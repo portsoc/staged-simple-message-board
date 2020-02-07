@@ -7,7 +7,8 @@
     "test1": "cd stages/1;node svr",
     "test2": "cd stages/2;node svr",
     "test3": "cd stages/3;node svr",
-    "test4": "cd stages/4;node svr"
+    "test4": "cd stages/4;node svr",
+    "test5": "cd stages/5;node svr"
   },
   "repository": {
     "type": "git",
