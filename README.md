@@ -1,4 +1,5 @@
 # Simple Apps need APIs 
+In this repo we see how many APIs emerge _without_ planning.
 
 ## Stage 1: A basic structure
  * 'svr.js' is a four line express static server.
