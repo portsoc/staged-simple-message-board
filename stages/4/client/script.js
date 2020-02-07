@@ -11,9 +11,23 @@ function removeContentFrom(what) {
 function showMessages(messages, where) {
   for (const message of messages) {
     const li = document.createElement('li');
-    li.textContent = message; 
+    li.textContent = message.msg; 
+    li.dataset.id = message.id
     where.appendChild(li);
+
+    li.addEventListener('mouseenter', showDetail);
   }
+}
+
+async function showDetail(e) {
+  const response = await fetch("messages/"+e.target.dataset.id);
+  if (response.ok) {
+    let detail = await response.json()
+    const p = document.createElement('p');
+    p.textContent = `Message received on server at ${detail.time}`;
+    removeContentFrom(el.detail);
+    el.detail.appendChild(p); 
+  }  
 }
 
 async function loadMessages() {
@@ -52,7 +66,7 @@ async function sendMessage() {
     el.message.value="";
     const updatedMessages = await response.json();
     removeContentFrom(el.messagelist);
-    showMessages(updatedMessages);
+    showMessages(updatedMessages, el.messagelist);
   } else {
     console.log("failed to send message", response);
   }
@@ -66,7 +80,8 @@ async function sendMessage() {
 function prepareHandles() {
   el.messagelist = document.querySelector("#messagelist");
   el.message = document.querySelector("#message");
-  el.send = document.querySelector("#send");  
+  el.send = document.querySelector("#send");
+  el.detail = document.querySelector("#detail");
 }
 
 /**

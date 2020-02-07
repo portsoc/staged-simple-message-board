@@ -5,26 +5,6 @@
  * 'index.html' contains just static content.
  * 'script.js' writes the the console on page load.
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 ## Stage 2: Reading some data
  * 'svr.js' add an array of default messages and a route (called '/messages') that returns them if a GET request is received.
  * 'index.html' just has the messagelist id added so we can refer to it in the JS.
@@ -36,15 +16,9 @@
  * 'script.js' includes new sendMessage function that POSTS new messages, and checkKeys function that looks for ENTER being pressed.  The loadMessages function has been refactored to call smaller named functions.
 
 ## Stage 4: 
-  Each message on a message board should be addressable.
-  We need a client page that gets ID from hash or search.
-  Resources have ID in the path.
-  Every resource has a different URL.
-  Add get on /messages/:id
-
-## Stage 5:
-  Add put on /messages/:id (edit function - different to create new)
-
+ * 'svr.js' started storing objects instead of strings; usig uuids to identify messages and added a new route for single messages if their detail is required.
+ * 'index.html' includes a new details field.
+ * 'script.js' allows users to hover over messages to get information about the time the message was posted (this is retrieved for each message as the mouseenter event occurs).
 
 # Exercise:
 

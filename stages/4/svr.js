@@ -7,9 +7,9 @@ const app = express();
 app.use(express.static('client'));
 
 let messages = [
-  {id: "1", msg: "these are three default messages"},
-  {id: "2", msg: "delivered from the server"},
-  {id: "3", msg: "using a custom route"}
+  {id: "xnshfdsafasd", msg: "these are three default messages", time: "default"},
+  {id: "dskjdshkjhsd", msg: "delivered from the server", time: "default"},
+  {id: "vcxbxcvfggzv", msg: "using a custom route", time: "default"}
 ];
 
 app.get("/messages", (req, res) => {
@@ -20,7 +20,8 @@ app.get("/messages", (req, res) => {
 app.get("/messages/:id", (req, res) => {
   for (const message of messages) {
     if (message.id === req.params.id) {
-      res.json(message);      
+      res.json(message);
+      return;  // short
     }
   }
   res.status(404).send("No match for that ID.")
@@ -28,7 +29,13 @@ app.get("/messages/:id", (req, res) => {
 
 
 app.post("/messages", express.json(), (req, res) => {
-  messages = [req.body.msg, ...messages.slice(0,9)];
+
+  const newMessage = {
+    id: uuid(),
+    msg: req.body.msg,
+    time: Date()
+  };
+  messages = [newMessage, ...messages.slice(0,9)];
   res.json(messages);
 });
 
