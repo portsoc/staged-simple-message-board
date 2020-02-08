@@ -8,22 +8,23 @@ const mb = require('./messageboard');
 
 app.use(express.static('client'));
 
-app.get("/messages", (req, res) => {
+function getMessages(req, res) {
   res.json(mb.getMessages());
-});
+}
 
-app.get("/messages/:id", (req, res) => {
+function getMessage(req, res) {
   let result = mb.getMessage(req.params.id);
-  if (result) {
-    res.json(result);
-  } else {
-    res.status(404).send("No match for that ID.")
-  }
-});
+  if (!result) { res.status(404).send("No match for that ID."); }
+  res.json(result);
+}
 
-app.post("/messages", express.json(), (req, res) => {
+function postMessage(req, res) {
   const messages = mb.addMessage(req.body.msg);
   res.json(messages);
-});
+}
+
+app.get("/messages", getMessages);
+app.get("/messages/:id", getMessage);
+app.post("/messages", express.json(), postMessage);
 
 app.listen(8080);
