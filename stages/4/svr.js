@@ -1,8 +1,8 @@
 // message board app
-// stage 3: add route for posting new messages
+// stage 4: An API route for every message
 const express = require('express');
-const uuid = require('uuid-random');
 const app = express();
+const uuid = require('uuid-random');
 
 app.use(express.static('client'));
 
@@ -26,7 +26,6 @@ app.get("/messages/:id", (req, res) => {
   }
   res.status(404).send("No match for that ID.")
 });
-
 
 app.post("/messages", express.json(), (req, res) => {
 
