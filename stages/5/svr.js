@@ -1,4 +1,4 @@
-"use strict";
+'use strict';
 
 // message board app
 // stage 5: refactor to separate http/web code from core logic
@@ -13,8 +13,8 @@ function getMessages(req, res) {
 }
 
 function getMessage(req, res) {
-  let result = mb.getMessage(req.params.id);
-  if (!result) { res.status(404).send("No match for that ID."); }
+  const result = mb.getMessage(req.params.id);
+  if (!result) { res.status(404).send('No match for that ID.'); }
   res.json(result);
 }
 
@@ -23,8 +23,8 @@ function postMessage(req, res) {
   res.json(messages);
 }
 
-app.get("/messages", getMessages);
-app.get("/messages/:id", getMessage);
-app.post("/messages", express.json(), postMessage);
+app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
+app.post('/messages', express.json(), postMessage);
 
 app.listen(8080);

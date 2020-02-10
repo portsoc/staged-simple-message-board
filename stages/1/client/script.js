@@ -1,6 +1,5 @@
 function pageLoaded() {
-  console.log("js ready");
+  console.log('js ready');
 }
 
-window.addEventListener("load", pageLoaded);
-
+window.addEventListener('load', pageLoaded);

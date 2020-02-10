@@ -2,14 +2,14 @@
 const uuid = require('uuid-random');
 
 let messages = [
-  { id: 'first', msg: 'first message', time: 'no-time' }
+  { id: 'first', msg: 'first message', time: 'no-time' },
 ];
 
-function getMessages () {
+function getMessages() {
   return messages;
 }
 
-function getMessage (id) {
+function getMessage(id) {
   for (const message of messages) {
     if (message.id === id) {
       return message;
@@ -18,11 +18,11 @@ function getMessage (id) {
   return null;
 }
 
-function addMessage (msg) {
+function addMessage(msg) {
   const newMessage = {
     id: uuid(),
     time: Date(),
-    msg
+    msg,
   };
   messages = [newMessage, ...messages.slice(0, 9)];
   return messages;
@@ -31,5 +31,5 @@ function addMessage (msg) {
 module.exports = {
   getMessages,
   getMessage,
-  addMessage
+  addMessage,
 };

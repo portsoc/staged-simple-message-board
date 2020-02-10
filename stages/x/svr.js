@@ -1,10 +1,10 @@
-const express = require("express");
+const express = require('express');
 const app = express();
-app.use("/", express.static("my_lovely_special_root_folder") );
+app.use('/', express.static('my_lovely_special_root_folder'));
 
-const messages = [ "hello mum" ];
+const messages = ['hello mum'];
 
-app.get("/messages", (req, res) => {
+app.get('/messages', (req, res) => {
   res.json(messages);
 });
 

@@ -1,12 +1,12 @@
-"use strict";
+'use strict';
 const uuid = require('uuid-random');
 
 let messages = [
-  {id: "first", msg: "first message", time: "no-time"}
+  { id: 'first', msg: 'first message', time: 'no-time' },
 ];
 
 function getMessages() {
-  return messages; 
+  return messages;
 }
 
 function getMessage(id) {
@@ -22,14 +22,14 @@ function addMessage(msg) {
   const newMessage = {
     id: uuid(),
     time: Date(),
-    msg
+    msg,
   };
-  messages = [newMessage, ...messages.slice(0,9)];
+  messages = [newMessage, ...messages.slice(0, 9)];
   return messages;
 }
 
 module.exports = {
   getMessages,
   getMessage,
-  addMessage
-}
+  addMessage,
+};
