@@ -14,7 +14,10 @@ function getMessages(req, res) {
 
 function getMessage(req, res) {
   const result = mb.getMessage(req.params.id);
-  if (!result) { res.status(404).send('No match for that ID.'); }
+  if (!result) {
+    res.status(404).send('No match for that ID.');
+    return;
+  }
   res.json(result);
 }
 

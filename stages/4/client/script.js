@@ -36,7 +36,7 @@ async function loadMessages() {
   if (response.ok) {
     messages = await response.json();
   } else {
-    messages = ['failed to load messages :-('];
+    messages = [{ msg: 'failed to load messages :-(' }];
   }
   removeContentFrom(el.messagelist);
   showMessages(messages, el.messagelist);
