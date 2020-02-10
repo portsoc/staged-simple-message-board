@@ -1,9 +1,9 @@
 // message board app
 // stage 4: An API route for every message
 const express = require('express');
-const app = express();
 const uuid = require('uuid-random');
 
+const app = express();
 app.use(express.static('client'));
 
 let messages = [

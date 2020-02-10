@@ -19,9 +19,4 @@ app.post('/messages', express.json(), (req, res) => {
   res.json(messages);
 });
 
-// yes we can generate html, but we don't
-app.get('/crazy/html/path', (req, res) => {
-  res.send('<!doctype html><title>x</title><h1>hello mum</h1>');
-});
-
 app.listen(8080);

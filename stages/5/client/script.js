@@ -99,5 +99,3 @@ function pageLoaded() {
 }
 
 window.addEventListener('load', pageLoaded);
-
-console.log(location.hash);
