@@ -18,11 +18,11 @@ In this repo we see how many APIs emerge _without_ planning.
 
 * `svr.js` adds a second route for `/messages`, this time defining what we do for POST requests – we add a new message.
 * `index.html` includes two new input fields for entering a new message.
-* `script.js` includes a new `sendMessage` function that POSTS the new message, and a `checkKeys` function that looks for ENTER being pressed so posting a new message is more usable.  The `loadMessages` function has been refactored to call smaller named functions.
+* `script.js` includes a new `sendMessage` function that posts the new message, and a `checkKeys` function that looks for ENTER being pressed so posting a new message is more usable.  The `loadMessages` function has been refactored to call smaller named functions.
 
 ## Stage 4: An API route for every message
 
-* `svr.js` now stores objects instead of strings, using UUIDs to identify messages; and adds a new route for GETting the details of any individual message.
+* `svr.js` now stores objects instead of strings, using UUIDs to identify messages; and adds a new route at `/messages/:id` for getting the details of any individual message.
 * `index.html` includes a new `detail` field.
 * `script.js` allows users to hover over messages to get information about the time the message was posted (this is retrieved for each message as the `mouseenter` event occurs).
 
@@ -30,6 +30,14 @@ In this repo we see how many APIs emerge _without_ planning.
 
 * `svr.js` has been simplified with all code that isn't specific to HTTP removed to a separate module.
 * `messageboard.js` created which now contains all the core logic.
+
+## Stage 6: An API route and client page for update messages
+
+* `svr.js` adds a second route at `/messages/:id` to allow PUT requests so a message can be edited, also adds `extensions` parameter to `express.static` to automatically fill in `.html` in URLs.
+* `messageboard.js` adds a function for updating a message.
+* `script.js` now adds an "(edit)" link to each message.
+* `message.html` created to show an individual message.
+* `message.js` created with the client-side script for sending an edited message to the server with a PUT request.
 
 ## Exercise
 
