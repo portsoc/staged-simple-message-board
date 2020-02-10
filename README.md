@@ -10,25 +10,25 @@ In this repo we see how many APIs emerge _without_ planning.
 
 ## Stage 2: Reading some data
 
-* `svr.js` add an array of default messages and a route (called '/messages') that returns them if a GET request is received.
-* `index.html` just has the messagelist id added so we can refer to it in the JS.
-* `script.js` add a loadmessage function that fetches messages from the new route, replaces the initial static content.
+* `svr.js` adds an array of default messages and a route (at `/messages`) that returns them in response to a GET request.
+* `index.html` just has the `messagelist` id added so we can refer to it in the script.
+* `script.js` adds a `loadMessages` function that fetches messages from the server, replacing the initial static content.
 
 ## Stage 3: Storing data
 
-* `svr.js` add a second route for '/messages', this time defining what we do for POST requests.
-* `index.html` includes two new input fields.
-* `script.js` includes new sendMessage function that POSTS new messages, and checkKeys function that looks for ENTER being pressed.  The loadMessages function has been refactored to call smaller named functions.
+* `svr.js` adds a second route for `/messages`, this time defining what we do for POST requests – we add a new message.
+* `index.html` includes two new input fields for entering a new message.
+* `script.js` includes a new `sendMessage` function that POSTS the new message, and a `checkKeys` function that looks for ENTER being pressed so posting a new message is more usable.  The `loadMessages` function has been refactored to call smaller named functions.
 
 ## Stage 4: An API route for every message
 
-* `svr.js` started storing objects instead of strings; usig uuids to identify messages and added a new route for single messages if their detail is required.
-* `index.html` includes a new details field.
-* `script.js` allows users to hover over messages to get information about the time the message was posted (this is retrieved for each message as the mouseenter event occurs).
+* `svr.js` now stores objects instead of strings, using UUIDs to identify messages; and adds a new route for GETting the details of any individual message.
+* `index.html` includes a new `detail` field.
+* `script.js` allows users to hover over messages to get information about the time the message was posted (this is retrieved for each message as the `mouseenter` event occurs).
 
 ## Stage 5: Refactoring as a module
 
-* `svr.js` has been simplified with all non-http related code removed to a separate module.
+* `svr.js` has been simplified with all code that isn't specific to HTTP removed to a separate module.
 * `messageboard.js` created which now contains all the core logic.
 
 ## Exercise
