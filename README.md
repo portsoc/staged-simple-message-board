@@ -33,11 +33,19 @@ In this repo we see how many APIs emerge _without_ planning.
 
 ## Exercise
 
-Imagine a database with tables for lecturers and students, in which every student has a personal tutor who is a lecturer.  We wish to create a web-based service that uses this table.
 
-1. Who might its users be?
-2. Consider each type of user that you have identified: what will they want the web client to do?
-3. Design a (read-only) API that provides the data necessary to fulfil the requirements identified above
-   * NB: You don't have to get the syntax perfect - you're just dealing with concepts here - to do 'a' the client will need to get 'b' and 'c'
-4. Are there any design attributes that fall out of your initial API design?
-   * For example: to get 'b' and 'c' the server will have to know 'd' and do 'e'.
+Imagine a database with tables for lecturers and students, in which every student has a personal tutor who is a lecturer.
+
+1. Who might want to use data from such a database? _(List potential users)_
+2. Consider each type of user that wants to access the data: what functionality will they want from the web app? _(List use cases)_
+3. Design a (read-only) API that provides the data necessary to fulfil the requirements identified above:
+   * Identify the routes
+   * Specify what the server would do in response to a GET request
+   * Describe when the client web app will use the request
+   * NB: You don't have to use any syntax here, you're just dealing with concepts.
+
+When done with the above, extend the exercise:
+
+4. Add a table of modules: every student currently studies several modules, and every module is currently taught by one or more lecturers. Repeat steps 1–3.
+5. Consider that we need to remember the modules students took in previous years; so a final-year student can have 11 modules they studied before, and 5 they are studying currently. Repeat steps 1–3.
+6. Consider who would want to update any of the data. Repeat steps 1–3 but this time design a read-write API: beside the GET routes you defined above, you can define PUT, POST, and DELETE routes.
