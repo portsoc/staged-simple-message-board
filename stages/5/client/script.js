@@ -63,7 +63,7 @@ async function sendMessage() {
   });
 
   if (response.ok) {
-    delete el.message.value;
+    el.message.value = '';
     const updatedMessages = await response.json();
     removeContentFrom(el.messagelist);
     showMessages(updatedMessages, el.messagelist);
