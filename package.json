@@ -4,13 +4,15 @@
   "description": "A demo app for adding two numbers.",
   "main": "svr.js",
   "scripts": {
-    "test1": "cd stages/1 && node svr",
-    "test2": "cd stages/2 && node svr",
-    "test3": "cd stages/3 && node svr",
-    "test4": "cd stages/4 && node svr",
-    "test5": "cd stages/5 && node svr",
-    "test6": "cd stages/6 && node svr",
-    "test7": "cd stages/7 && node svr"
+    "test1": "cd stages/1; node svr",
+    "test2": "cd stages/2; node svr",
+    "test3": "cd stages/3; node svr",
+    "test4": "cd stages/4; node svr",
+    "test5": "cd stages/5; node svr",
+    "test6": "cd stages/6; node svr",
+    "test7": "cd stages/7; node svr",
+    "test8a": "cd stages/8a; node svr",
+    "setup": "createdb messageboard; psql messageboard < messageboard.psql"
   },
   "repository": {
     "type": "git",
@@ -32,6 +34,7 @@
   "dependencies": {
     "eslint": "^6.8.0",
     "express": "^4.16.4",
+    "pg": "^7.18.1",
     "uuid-random": "^1.3.0"
   },
   "devDependencies": {
