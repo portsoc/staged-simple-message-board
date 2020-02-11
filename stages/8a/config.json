@@ -1,0 +1,4 @@
+{
+  "database": "messageboard",
+  "statement_timeout": 5000
+}
