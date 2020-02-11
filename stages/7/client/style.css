@@ -1,0 +1,118 @@
+:root {
+  font-family: sans-serif;
+  box-sizing: border-box;
+
+  --pad: 1rem;
+  --rad: calc(var(--pad) / 2);
+  --slow: 0.2s;
+  --fast: 0.05s;
+
+  --bg: #FFF;
+  --bginput: #FEFEFE;
+  --bghi: rgba(0,100,200,0.5);
+  --fg: rgba(0,0,0,1);
+  --col1: rgba(0,100,200,1);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root {
+    --bg: #000;
+    --bginput: #363;
+    --bghi: rgb(0,102,0,1);
+    --fg: rgba(204,204,204,1);
+    --col1: rgba(100,255,100,1);
+  }
+}
+
+* {
+  padding: 0;
+  margin: 0;
+  box-sizing: border-box;
+  transition: background var(--slow) linear;
+}
+
+body {
+  background: var(--bg);
+  color: var(--fg);
+  display: grid;
+  grid-template-columns: 1fr;
+  grid-template-rows: auto auto 1fr auto;
+  grid-template-areas: "title" "input" "messages" "aside"; 
+  width: 100vw;
+  height: 100vh;
+}
+
+body>* {
+  padding: var(--pad);
+}
+
+h1 {
+  grid-area: title;
+}
+
+header {
+  grid-area: input;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "msg btn";
+  width: 100vw;
+}
+
+a,
+a:visited {
+  color: var(--col1);
+}
+
+header * {
+  font-size: 100%;
+  outline-color: var(--col1);
+  border: none;
+  border-radius: var(--rad);
+  padding: var(--pad);
+}
+
+#send {
+  grid-area: btn;
+  background: var(--col1);
+  color: var(--bg);
+}
+
+#message {
+  grid-area: msg;
+  background: var(--bginput);
+  color: var(--fg);
+  caret-color: var(--col1);
+  margin-right: var(--pad);
+}
+
+#message::placeholder {
+  color: var(--col1);
+}
+
+#messagelist {
+  grid-area: messages;
+  display: flex;
+  flex-direction: column;
+}
+
+#messagelist > li {
+  padding: var(--pad);
+  list-style: none;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+#messagelist > li:hover {
+  background: var(--bghi);
+  transition: background var(--fast) linear;
+}
+
+
+#messagelist > li.update {
+  animation-duration: var(--speedOfFade);
+  animation-name: slidein;
+}
+
+aside {
+  grid-area: aside;
+}
