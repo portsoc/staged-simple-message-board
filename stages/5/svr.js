@@ -9,11 +9,11 @@ const mb = require('./messageboard');
 app.use(express.static('client'));
 
 function getMessages(req, res) {
-  res.json(mb.getMessages());
+  res.json(mb.listMessages());
 }
 
 function getMessage(req, res) {
-  const result = mb.getMessage(req.params.id);
+  const result = mb.findMessage(req.params.id);
   if (!result) {
     res.status(404).send('No match for that ID.');
     return;

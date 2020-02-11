@@ -7,11 +7,11 @@ let messages = [
   { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'default' },
 ];
 
-function getMessages() {
+function listMessages() {
   return messages;
 }
 
-function getMessage(id) {
+function findMessage(id) {
   for (const message of messages) {
     if (message.id === id) {
       return message;
@@ -31,7 +31,7 @@ function addMessage(msg) {
 }
 
 function editMessage(updatedMessage) {
-  const oldMessage = getMessage(updatedMessage.id);
+  const oldMessage = findMessage(updatedMessage.id);
   if (oldMessage == null) throw new Error('message not found');
 
   // update old message in place
@@ -42,8 +42,8 @@ function editMessage(updatedMessage) {
 }
 
 module.exports = {
-  getMessages,
-  getMessage,
+  listMessages,
+  findMessage,
   addMessage,
   editMessage,
 };
