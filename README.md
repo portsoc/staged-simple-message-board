@@ -39,6 +39,11 @@ In this repo we see how many APIs emerge _without_ planning.
 * `message.html` created to show an individual message.
 * `message.js` created with the client-side script for sending an edited message to the server with a PUT request.
 
+## Stage 7: Style!
+
+* `index.html` and `message.html` put the inputs in a `<header>` and add a link to the stylesheet
+* `style.css` makes it all pretty, with dark and light mode
+
 ## Exercise
 
 
