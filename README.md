@@ -44,6 +44,13 @@ In this repo we see how many APIs emerge _without_ planning.
 * `index.html` and `message.html` put the inputs in a `<header>` and add a link to the stylesheet
 * `style.css` makes it all pretty, with dark and light mode
 
+## Stage 8: Data belongs in a database
+
+* `svr.js` uses the `messageboard` module asynchronously
+* `messageboard.js` uses SQLite instead of an in-memory array, using the `sqlite` package
+* `migrations-sqlite/001-initial.sql` is the SQL script that creates the necessary tables (used in `messageboard.js` by the `db.migrate()` call)
+* `database.sqlite` is the database file (it gets created by `messageboard.js` when we first run the server)
+
 ## Exercise
 
 

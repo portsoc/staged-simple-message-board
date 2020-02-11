@@ -1,44 +1,52 @@
 'use strict';
 const uuid = require('uuid-random');
+const sqlite = require('sqlite');
 
-let messages = [
-  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'default' },
-  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'default' },
-  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'default' },
-];
-
-function listMessages() {
-  return messages;
+async function init() {
+  const db = await sqlite.open('./database.sqlite', { verbose: true });
+  await db.migrate({ migrationsPath: './migrations-sqlite' });
+  return db;
 }
 
-function findMessage(id) {
-  for (const message of messages) {
-    if (message.id === id) {
-      return message;
-    }
-  }
-  return null;
+const dbPromise = init();
+
+async function listMessages() {
+  const db = await dbPromise;
+  return db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
 }
 
-function addMessage(msg) {
-  const newMessage = {
-    id: uuid(),
-    time: Date(),
-    msg,
-  };
-  messages = [newMessage, ...messages.slice(0, 9)];
-  return messages;
+async function findMessage(id) {
+  const db = await dbPromise;
+  return db.get('SELECT * FROM Messages WHERE id = ?', id);
 }
 
-function editMessage(updatedMessage) {
-  const oldMessage = findMessage(updatedMessage.id);
-  if (oldMessage == null) throw new Error('message not found');
+function currentTime() {
+  return new Date().toISOString();
+}
 
-  // update old message in place
-  oldMessage.time = Date();
-  oldMessage.msg = updatedMessage.msg;
+async function addMessage(msg) {
+  const db = await dbPromise;
 
-  return oldMessage;
+  const id = uuid();
+  const time = currentTime();
+  await db.run('INSERT INTO Messages VALUES (?, ?, ?)', [id, msg, time]);
+
+  return listMessages();
+}
+
+async function editMessage(updatedMessage) {
+  const db = await dbPromise;
+
+  const id = updatedMessage.id;
+  const time = currentTime();
+  const msg = updatedMessage.msg;
+
+  const statement = await db.run('UPDATE Messages SET msg = ? , time = ? WHERE id = ?', [msg, time, id]);
+
+  // if nothing was updated, the ID doesn't exist
+  if (statement.changes === 0) throw new Error('message not found');
+
+  return findMessage(id);
 }
 
 module.exports = {
