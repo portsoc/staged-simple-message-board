@@ -4,7 +4,7 @@ const db = config.database; // shortcut
 const Postgres = require('pg').Client;
 
 const sql = new Postgres(config);
-(async () => { await sql.connect(); })();
+sql.connect();
 
 sql.on('error', (err) => {
   console.error('SQL Fail', err);
