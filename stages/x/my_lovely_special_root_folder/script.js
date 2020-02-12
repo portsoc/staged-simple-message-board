@@ -8,7 +8,7 @@ async function getSomeMessages() {
     for (const m of messages) {
       const li = document.createElement('li');
       li.textContent = m;
-      ml.appendChild(li);
+      ml.append(li);
     }
   }
 }

@@ -12,7 +12,7 @@ function showMessages(messages, where) {
   for (const message of messages) {
     const li = document.createElement('li');
     li.textContent = message;
-    where.appendChild(li);
+    where.append(li);
   }
 }
 

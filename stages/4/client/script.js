@@ -13,7 +13,7 @@ function showMessages(messages, where) {
     const li = document.createElement('li');
     li.textContent = message.msg;
     li.dataset.id = message.id;
-    where.appendChild(li);
+    where.append(li);
 
     li.addEventListener('mouseenter', showDetail);
   }
@@ -26,7 +26,7 @@ async function showDetail(e) {
     const p = document.createElement('p');
     p.textContent = `Message received on server at ${detail.time}`;
     removeContentFrom(el.detail);
-    el.detail.appendChild(p);
+    el.detail.append(p);
   }
 }
 

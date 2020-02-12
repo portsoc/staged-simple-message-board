@@ -19,12 +19,12 @@ function showMessages(messages, where) {
       edit.textContent = 'edit';
       edit.href = `/message#${message.id}`;
 
-      li.appendChild(document.createTextNode(' ('));
-      li.appendChild(edit);
-      li.appendChild(document.createTextNode(')'));
+      li.append(' (');
+      li.append(edit);
+      li.append(')');
     }
 
-    where.appendChild(li);
+    where.append(li);
 
     li.addEventListener('mouseenter', showDetail);
   }
@@ -37,7 +37,7 @@ async function showDetail(e) {
     const p = document.createElement('p');
     p.textContent = `Message received on server at ${detail.time}`;
     removeContentFrom(el.detail);
-    el.detail.appendChild(p);
+    el.detail.append(p);
   }
 }
 
