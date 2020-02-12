@@ -4,7 +4,7 @@
 // stage 6: add an API route and client page for update messages
 const express = require('express');
 const app = express();
-const mb = require('./messageboard.pg');
+const mb = require('./messageboard');
 
 app.use(express.static('client', { extensions: ['html'] }));
 
