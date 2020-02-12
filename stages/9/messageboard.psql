@@ -1,14 +1,14 @@
-create extension if not exists "uuid-ossp";
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
 
-drop table if exists messageboard;
+DROP TABLE IF EXISTS Messageboard;
 
-create table if not exists messageboard (
-    id uuid DEFAULT uuid_generate_v4() primary key not null,
-    time timestamp default now(),
-    msg text  
+CREATE TABLE IF NOT EXISTS Messageboard (
+    id   uuid      DEFAULT uuid_generate_v4() PRIMARY KEY,
+    time timestamp DEFAULT now(),
+    msg  text
 );
 
-INSERT INTO messageboard (msg) VALUES ('default message 1');
-INSERT INTO messageboard (msg) VALUES ('default message 2');
-INSERT INTO messageboard (msg) VALUES ('default message 3');
-INSERT INTO messageboard (msg) VALUES ('default message 4');
+INSERT INTO Messageboard (msg) VALUES
+( 'xnshfdsafasd'),
+( 'dskjdshkjhsd'),
+( 'vcxbxcvfggzv');
