@@ -48,8 +48,15 @@ In this repo we see how many APIs emerge _without_ planning.
 
 * `svr.js` uses the `messageboard` module asynchronously
 * `messageboard.js` uses SQLite instead of an in-memory array, using the `sqlite` package
-* `migrations-sqlite/001-initial.sql` is the SQL script that creates the necessary tables (used in `messageboard.js` by the `db.migrate()` call)
+* `migrations-sqlite/001-initial.sql` is the SQL script that creates the necessary table (used in `messageboard.js` by the `db.migrate()` call)
 * `database.sqlite` is the database file (it gets created by `messageboard.js` when we first run the server)
+
+## Stage 9: PostgreSQL
+
+* `messageboard.js` uses PostgreSQL instead of SQLite, using the `pg` package
+* `messageboard.psql` is the SQL script that creates the necessary tables (used in `package.json` by the `setuppg` script)
+* `config.json` specifies where to find a running PostgreSQL and which database to use (edit this if you have trouble connecting to your PostgreSQL)
+
 
 ## Exercise
 
