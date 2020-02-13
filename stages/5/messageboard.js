@@ -2,9 +2,9 @@
 const uuid = require('uuid-random');
 
 let messages = [
-  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'default' },
-  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'default' },
-  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'default' },
+  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'third' },
+  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'second' },
+  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'first' },
 ];
 
 function listMessages() {

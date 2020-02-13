@@ -2,9 +2,9 @@
 const uuid = require('uuid-random');
 
 let messages = [
-  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'default' },
-  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'default' },
-  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'default' },
+  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'third' },
+  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'second' },
+  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'first' },
 ];
 
 function listMessages() {
@@ -31,14 +31,14 @@ function addMessage(msg) {
 }
 
 function editMessage(updatedMessage) {
-  const oldMessage = findMessage(updatedMessage.id);
-  if (oldMessage == null) throw new Error('message not found');
+  const storedMessage = findMessage(updatedMessage.id);
+  if (storedMessage == null) throw new Error('message not found');
 
   // update old message in place
-  oldMessage.time = Date();
-  oldMessage.msg = updatedMessage.msg;
+  storedMessage.time = Date();
+  storedMessage.msg = updatedMessage.msg;
 
-  return oldMessage;
+  return storedMessage;
 }
 
 module.exports = {

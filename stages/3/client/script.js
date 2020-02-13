@@ -30,10 +30,8 @@ async function loadMessages() {
 
 /* add a message if enter pressed */
 function checkKeys(e) {
-  if (e.target === el.message) {
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
+  if (e.key === 'Enter') {
+    sendMessage();
   }
 }
 

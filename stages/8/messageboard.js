@@ -8,15 +8,15 @@ async function init() {
   return db;
 }
 
-const dbPromise = init();
+const dbConn = init();
 
 async function listMessages() {
-  const db = await dbPromise;
+  const db = await dbConn;
   return db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
 }
 
 async function findMessage(id) {
-  const db = await dbPromise;
+  const db = await dbConn;
   return db.get('SELECT * FROM Messages WHERE id = ?', id);
 }
 
@@ -25,7 +25,7 @@ function currentTime() {
 }
 
 async function addMessage(msg) {
-  const db = await dbPromise;
+  const db = await dbConn;
 
   const id = uuid();
   const time = currentTime();
@@ -35,7 +35,7 @@ async function addMessage(msg) {
 }
 
 async function editMessage(updatedMessage) {
-  const db = await dbPromise;
+  const db = await dbConn;
 
   const id = updatedMessage.id;
   const time = currentTime();

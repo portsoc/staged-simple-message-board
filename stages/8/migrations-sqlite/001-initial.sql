@@ -7,9 +7,15 @@ CREATE TABLE Messages (
 );
 
 INSERT INTO Messages (id, msg, time) VALUES
-( 'xnshfdsafasd', 'these are three default messages', datetime('now')),
-( 'dskjdshkjhsd', 'delivered from the server',        datetime('now')),
-( 'vcxbxcvfggzv', 'using a custom route',             datetime('now'));
+( 'xnshfdsafasd',
+  'these are three default messages',
+  datetime('now')),
+( 'dskjdshkjhsd',
+  'delivered from the server',
+  datetime('now')),
+( 'vcxbxcvfggzv',
+  'using a custom route',
+  datetime('now'));
 
 
 -- Down

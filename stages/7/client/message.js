@@ -27,12 +27,10 @@ async function loadMessage() {
 /* add a message if enter pressed,
    update button to make it "update" when the message is edited */
 function checkKeys(e) {
-  if (e.target === el.message) {
-    // change button to show message can be updated
-    updateSendButton();
-    if (e.key === 'Enter') {
-      sendMessage();
-    }
+  // change button to show message can be updated
+  updateSendButton();
+  if (e.key === 'Enter') {
+    sendMessage();
   }
 }
 

@@ -9,6 +9,6 @@ CREATE TABLE IF NOT EXISTS Messageboard (
 );
 
 INSERT INTO Messageboard (msg) VALUES
-( 'xnshfdsafasd'),
-( 'dskjdshkjhsd'),
-( 'vcxbxcvfggzv');
+( 'these are three default messages' ),
+( 'delivered from the server' ),
+( 'using a custom route' );
