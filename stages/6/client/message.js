@@ -4,10 +4,6 @@ function showMessage(message) {
   el.message.value = message.msg;
 }
 
-function updateSendButton(message = 'Update') {
-  el.send.value = message;
-}
-
 function getMessageId() {
   return window.location.hash.substring(1);
 }
@@ -27,8 +23,6 @@ async function loadMessage() {
 /* add a message if enter pressed,
    update button to make it "update" when the message is edited */
 function checkKeys(e) {
-  // change button to show message can be updated
-  updateSendButton();
   if (e.key === 'Enter') {
     sendMessage();
   }
@@ -40,8 +34,6 @@ async function sendMessage() {
   const payload = { id, msg: el.message.value };
   console.log('Payload', payload);
 
-  updateSendButton('Sending');
-
   const response = await fetch(`messages/${id}`, {
     method: 'PUT',
     headers: { 'Content-Type': 'application/json' },
@@ -52,10 +44,8 @@ async function sendMessage() {
     el.message.value = '';
     const updatedMessages = await response.json();
     showMessage(updatedMessages, el.messagelist);
-    updateSendButton('Updated');
   } else {
     console.log('failed to send message', response);
-    updateSendButton('Error');
   }
 }
 
