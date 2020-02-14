@@ -1,39 +1,33 @@
-// message board app
-// stage 4: An API route for every message
-const express = require('express');
-const uuid = require('uuid-random');
+'use strict';
 
+// message board app
+// stage 5: refactor to separate http/web code from core logic
+const express = require('express');
 const app = express();
+const mb = require('./messageboard');
+
 app.use(express.static('client'));
 
-let messages = [
-  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'an hour ago' },
-  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'yesterday' },
-  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'last week' },
-];
+function getMessages(req, res) {
+  res.json(mb.listMessages());
+}
 
-app.get('/messages', (req, res) => {
-  res.json(messages);
-});
-
-app.get('/messages/:id', (req, res) => {
-  for (const message of messages) {
-    if (message.id === req.params.id) {
-      res.json(message);
-      return; // short
-    }
+function getMessage(req, res) {
+  const result = mb.findMessage(req.params.id);
+  if (!result) {
+    res.status(404).send('No match for that ID.');
+    return;
   }
-  res.status(404).send('No match for that ID.');
-});
+  res.json(result);
+}
 
-app.post('/messages', express.json(), (req, res) => {
-  const newMessage = {
-    id: uuid(),
-    msg: req.body.msg,
-    time: Date(),
-  };
-  messages = [newMessage, ...messages.slice(0, 9)];
+function postMessage(req, res) {
+  const messages = mb.addMessage(req.body.msg);
   res.json(messages);
-});
+}
+
+app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
+app.post('/messages', express.json(), postMessage);
 
 app.listen(8080);
