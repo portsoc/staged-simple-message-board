@@ -1,16 +1,21 @@
 // message board app
-// stage 2: add route for getting messages
+// stage 3: add route for posting new messages
 const express = require('express');
 const app = express();
 app.use(express.static('client'));
 
-const messages = [
+let messages = [
   'these are three default messages',
   'delivered from the server',
   'using a custom route',
 ];
 
 app.get('/messages', (req, res) => {
+  res.json(messages);
+});
+
+app.post('/messages', express.json(), (req, res) => {
+  messages = [req.body.msg, ...messages.slice(0, 9)];
   res.json(messages);
 });
 
