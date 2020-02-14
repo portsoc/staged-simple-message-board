@@ -13,7 +13,7 @@
     "stage7": "cd stages/7 && node svr",
     "stage8": "cd stages/8 && node svr",
     "stage9": "cd stages/9 && node svr",
-    "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.psql"
+    "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql"
   },
   "repository": {
     "type": "git",
