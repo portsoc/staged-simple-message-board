@@ -64,6 +64,10 @@ function prepareHandles() {
   el.send = document.querySelector('#send');
 }
 
+/**
+ * Connect listeners for button clicks,
+ * keyboard input, etc.
+ */
 function addEventListeners() {
   el.send.addEventListener('click', sendMessage);
   el.message.addEventListener('keyup', checkKeys);

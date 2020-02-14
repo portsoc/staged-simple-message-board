@@ -12,13 +12,10 @@ function showMessages(messages, where) {
     li.textContent = message.msg;
     li.dataset.id = message.id;
 
-    if (message.id != null) {
-      const edit = document.createElement('a');
-      edit.textContent = 'edit';
-      edit.href = `/message#${message.id}`;
-
-      li.append(' (', edit, ')');
-    }
+    const edit = document.createElement('a');
+    edit.textContent = 'edit me';
+    edit.href = `/message#${message.id}`;
+    li.append(' (', edit, ')');
 
     where.append(li);
 
