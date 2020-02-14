@@ -1,7 +1,7 @@
 'use strict';
 
 // message board app
-// stage 6: add an API route and client page for update messages
+// stage 7: add css
 const express = require('express');
 const app = express();
 const mb = require('./messageboard');
