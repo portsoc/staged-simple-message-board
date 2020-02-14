@@ -1,10 +1,8 @@
 const el = {};
 
-/* Remove all child elements from a given element */
+/* Remove all contents from a given element */
 function removeContentFrom(what) {
-  while (what.firstElementChild) {
-    what.firstElementChild.remove();
-  }
+  what.textContent = '';
 }
 
 /* Add an array of messages to the page */
