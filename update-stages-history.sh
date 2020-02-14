@@ -27,7 +27,7 @@ git checkout -b "$branchprep"
 git add -A ./"$stagesdir"
 git commit -m "empty starting point"
 
-for dir in ./"$branchprep"/*/ 
+for dir in ./"$branchprep"/*/
 do
   stagename=$(basename ${dir})
   rm -rf ./"$stagesdir"
@@ -39,7 +39,6 @@ do
   git tag -f -a "stage-$stagename" -m "stage $stagename"
 
   git commit -m "stage ${stagename}"
-  # repeat
 done
 
 git branch -D "$branch"
@@ -47,3 +46,10 @@ git branch -m "$branch"
 
 
 git checkout -- .gitignore
+
+echo
+echo "done, branch ${branch} created"
+echo "you probably want to do the following:"
+echo
+echo "git push -f --set-upstream origin ${branch} --tags"
+echo "git checkout master"
