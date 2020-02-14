@@ -36,9 +36,8 @@ do
   mv "$dir"/.??* ./"$stagesdir"/
 
   git add -A ./"$stagesdir"
-  git tag -f -a "stage-$stagename" -m "stage $stagename"
-
   git commit -m "stage ${stagename}"
+  git tag -f -a "stage-$stagename" -m "stage $stagename"
 done
 
 git branch -D "$branch"
