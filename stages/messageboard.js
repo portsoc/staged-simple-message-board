@@ -30,8 +30,20 @@ function addMessage(msg) {
   return messages;
 }
 
+function editMessage(updatedMessage) {
+  const storedMessage = findMessage(updatedMessage.id);
+  if (storedMessage == null) throw new Error('message not found');
+
+  // update old message in place
+  storedMessage.time = Date();
+  storedMessage.msg = updatedMessage.msg;
+
+  return storedMessage;
+}
+
 module.exports = {
   listMessages,
   findMessage,
   addMessage,
+  editMessage,
 };
