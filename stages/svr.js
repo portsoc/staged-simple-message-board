@@ -1,7 +1,7 @@
 'use strict';
 
 // message board app
-// stage 8: Data belongs in a database
+// stage 9: PostgreSQL
 const express = require('express');
 const app = express();
 const mb = require('./messageboard');
