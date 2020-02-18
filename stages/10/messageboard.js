@@ -1,6 +1,11 @@
 'use strict';
 const uuid = require('uuid-random');
 const sqlite = require('sqlite');
+const fs = require('fs');
+const util = require('util');
+const path = require('path');
+
+fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 
 async function init() {
   const db = await sqlite.open('./database.sqlite', { verbose: true });
@@ -34,12 +39,21 @@ function currentTime() {
   return new Date().toISOString();
 }
 
-async function addMessage(msg) {
+async function addMessage(msg, file) {
+  let newFilename;
+  if (file) {
+    // we should first check that the file is actually an image
+    // move the file where we want it
+    const fileExt = file.mimetype.split('/')[1] || 'png';
+    newFilename = file.filename + '.' + fileExt;
+    await fs.renameAsync(file.path, path.join('client', 'images', newFilename));
+  }
+
   const db = await dbConn;
 
   const id = uuid();
   const time = currentTime();
-  await db.run('INSERT INTO Messages VALUES (?, ?, ?)', [id, msg, time]);
+  await db.run('INSERT INTO Messages VALUES (?, ?, ?, ?)', [id, msg, time, newFilename]);
 
   return listMessages();
 }
