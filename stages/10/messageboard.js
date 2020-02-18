@@ -10,14 +10,24 @@ async function init() {
 
 const dbConn = init();
 
+function addImagePath(message) {
+  if (message.file) {
+    message.avatar = '/images/' + message.file;
+  }
+}
+
 async function listMessages() {
   const db = await dbConn;
-  return db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
+  const messages = await db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
+  messages.forEach(addImagePath);
+  return messages;
 }
 
 async function findMessage(id) {
   const db = await dbConn;
-  return db.get('SELECT * FROM Messages WHERE id = ?', id);
+  const msg = db.get('SELECT * FROM Messages WHERE id = ?', id);
+  addImagePath(msg);
+  return msg;
 }
 
 function currentTime() {
