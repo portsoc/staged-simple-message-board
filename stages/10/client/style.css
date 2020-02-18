@@ -37,7 +37,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto;
-  grid-template-areas: "title" "input" "messages" "aside"; 
+  grid-template-areas: "title" "input" "messages" "aside";
   width: 100vw;
   height: 100vh;
 }
@@ -53,8 +53,8 @@ h1 {
 header {
   grid-area: input;
   display: grid;
-  grid-template-columns: 1fr auto;
-  grid-template-areas: "msg btn";
+  grid-template-columns: 1fr auto auto;
+  grid-template-areas: "msg ava btn";
   width: 100vw;
 }
 
@@ -77,12 +77,20 @@ header * {
   color: var(--bg);
 }
 
+#avatar {
+  grid-area: ava;
+  margin-right: var(--pad);
+  background: var(--bginput);
+  color: var(--fg);
+}
+
 #message {
   grid-area: msg;
   background: var(--bginput);
   color: var(--fg);
   caret-color: var(--col1);
   margin-right: var(--pad);
+  border: solid thin grey;
 }
 
 #message::placeholder {
@@ -115,4 +123,11 @@ header * {
 
 aside {
   grid-area: aside;
+}
+
+img.avatar {
+  max-height: 3em;
+  max-width: 3em;
+  vertical-align: middle;
+  margin-right: 1em;
 }

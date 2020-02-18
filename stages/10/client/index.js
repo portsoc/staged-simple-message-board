@@ -17,6 +17,11 @@ function showMessages(messages, where) {
     edit.href = `/message#${message.id}`;
     li.append(' (', edit, ')');
 
+    const ava = document.createElement('img');
+    ava.classList.add('avatar');
+    ava.src = message.avatar || '/images/user.png';
+    li.prepend(ava);
+
     where.append(li);
 
     li.addEventListener('mouseenter', showDetail);
