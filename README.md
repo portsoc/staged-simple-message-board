@@ -57,6 +57,16 @@ In this repo we see how many APIs emerge _without_ planning.
 * `messageboard.sql` is the SQL script that creates the necessary tables (used in `package.json` by the `setuppg` script)
 * `config.json` specifies where to find a running PostgreSQL and which database to use (edit this if you have trouble connecting to your PostgreSQL)
 
+## Stage 10: Uploading avatar pictures (based on Stage 8) ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-10a))
+
+* `index.html` adds an input field for selecting an avatar picture, and default avatars for the messages present before current messages are loaded from the server
+* `style.css` makes sure the new field fits nicely and that avatar pictures are formatted with the messages
+* `index.js` puts avatars in the messages (when present, otherwise the default image); and submits messages with the avatar (switching from JSON to `FormData` which supports embedded files)
+* `svr.js` adds file upload functionality with the `multer` package (but keeps the JSON parser as well for backwards compatibility) and gives the incoming file to `mb.addMessage()`; before it's accepted, an uploaded file is in `upload/`
+* `messageboard.js` moves uploaded pictures in `client/images/` and notes their filename in the database, and when retrieving messages, it puts the public path to the picture in every message object
+* `migrations-sqlite/002-file.sql` adds a file column to the Messages table
+* `client/images/` is a folder that stores uploaded pictures, contains a single generic image used when no avatar is available for a message
+* `upload/` is a folder that stores uploaded files before we verify them and move them to `client/images/`
 
 ## Exercise
 
