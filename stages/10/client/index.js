@@ -19,7 +19,7 @@ function showMessages(messages, where) {
 
     const ava = document.createElement('img');
     ava.classList.add('avatar');
-    ava.src = message.avatar || '/images/user.png';
+    ava.src = message.avatar || '/images/user.svg';
     li.prepend(ava);
 
     where.append(li);
