@@ -1,7 +1,7 @@
 {
   "name": "addapp",
   "version": "1.0.0",
-  "description": "A demo app for adding two numbers.",
+  "description": "A demo message board app, built in stages, with explanations & diffs in the readme.",
   "main": "svr.js",
   "scripts": {
     "stage1": "cd stages/1 && nodemon svr",
@@ -44,7 +44,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-portsoc": "github:portsoc/eslint-config-portsoc",
+    "eslint-config-portsoc": "^0.1.0",
     "nodemon": "^2.0.2"
   }
 }
