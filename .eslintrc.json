@@ -1,20 +1,7 @@
 {
     "env": {
         "browser": true,
-        "commonjs": true,
-        "es6": true,
         "node": true
     },
-    "extends": "semistandard",
-    "parserOptions": {
-        "ecmaVersion": 2018
-    },
-    "rules": {
-      "comma-dangle": ["error", "always-multiline"],
-      "space-before-function-paren": ["error", {
-        "anonymous": "always",
-        "named": "never",
-        "asyncArrow": "always"
-      }]
-    }
+    "extends": "portsoc"
 }

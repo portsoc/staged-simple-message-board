@@ -14,7 +14,9 @@
     "stage8": "cd stages/8 && nodemon svr",
     "stage9": "cd stages/9 && nodemon svr",
     "stage10": "cd stages/10 && nodemon svr",
-    "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql"
+    "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql",
+    "lint": "eslint stages",
+    "test": "npm run lint"
   },
   "repository": {
     "type": "git",
@@ -42,12 +44,7 @@
   },
   "devDependencies": {
     "eslint": "^6.8.0",
-    "eslint-config-semistandard": "^15.0.0",
-    "eslint-config-standard": "^14.1.0",
-    "eslint-plugin-import": "^2.20.1",
-    "eslint-plugin-node": "^11.0.0",
-    "eslint-plugin-promise": "^4.2.1",
-    "eslint-plugin-standard": "^4.0.1",
+    "eslint-config-portsoc": "github:portsoc/eslint-config-portsoc",
     "nodemon": "^2.0.2"
   }
 }
