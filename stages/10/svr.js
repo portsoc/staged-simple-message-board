@@ -1,7 +1,7 @@
 // message board app
 // stage 8: Data belongs in a database
 import express from 'express';
-import * as multer from 'multer';
+import multer from 'multer';
 import * as mb from './messageboard.js';
 
 const app = express();

@@ -29,7 +29,7 @@ export function addMessage(msg) {
   return messages;
 }
 
-function editMessage(updatedMessage) {
+export function editMessage(updatedMessage) {
   const storedMessage = findMessage(updatedMessage.id);
   if (storedMessage == null) throw new Error('message not found');
 
@@ -39,10 +39,3 @@ function editMessage(updatedMessage) {
 
   return storedMessage;
 }
-
-export default {
-  listMessages,
-  findMessage,
-  addMessage,
-  editMessage,
-};
