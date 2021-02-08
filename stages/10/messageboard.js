@@ -1,5 +1,4 @@
-'use strict';
-const uuid = require('uuid-random');
+import uuid from 'uuid-random';
 const sqlite = require('sqlite');
 const fs = require('fs');
 const util = require('util');
@@ -21,14 +20,14 @@ function addImagePath(message) {
   }
 }
 
-async function listMessages() {
+export async function listMessages() {
   const db = await dbConn;
   const messages = await db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
   messages.forEach(addImagePath);
   return messages;
 }
 
-async function findMessage(id) {
+export async function findMessage(id) {
   const db = await dbConn;
   const msg = db.get('SELECT * FROM Messages WHERE id = ?', id);
   addImagePath(msg);
@@ -39,7 +38,7 @@ function currentTime() {
   return new Date().toISOString();
 }
 
-async function addMessage(msg, file) {
+export async function addMessage(msg, file) {
   let newFilename;
   if (file) {
     // we should first check that the file is actually an image
@@ -58,7 +57,7 @@ async function addMessage(msg, file) {
   return listMessages();
 }
 
-async function editMessage(updatedMessage) {
+export async function editMessage(updatedMessage) {
   const db = await dbConn;
 
   const id = updatedMessage.id;
@@ -72,10 +71,3 @@ async function editMessage(updatedMessage) {
 
   return findMessage(id);
 }
-
-module.exports = {
-  listMessages,
-  findMessage,
-  addMessage,
-  editMessage,
-};

@@ -1,10 +1,9 @@
-'use strict';
-
 // message board app
 // stage 6: add an API route and client page for update messages
-const express = require('express');
+import express from 'express';
+import * as mb from './messageboard.js';
+
 const app = express();
-const mb = require('./messageboard');
 
 app.use(express.static('client', { extensions: ['html'] }));
 

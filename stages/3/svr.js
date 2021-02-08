@@ -1,6 +1,7 @@
 // message board app
 // stage 3: add route for posting new messages
-const express = require('express');
+import express from 'express';
+
 const app = express();
 app.use(express.static('client'));
 

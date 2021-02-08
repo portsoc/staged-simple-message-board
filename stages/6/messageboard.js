@@ -1,5 +1,4 @@
-'use strict';
-const uuid = require('uuid-random');
+import uuid from 'uuid-random';
 
 let messages = [
   { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'an hour ago' },
@@ -7,11 +6,11 @@ let messages = [
   { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'last week' },
 ];
 
-function listMessages() {
+export function listMessages() {
   return messages;
 }
 
-function findMessage(id) {
+export function findMessage(id) {
   for (const message of messages) {
     if (message.id === id) {
       return message;
@@ -20,7 +19,7 @@ function findMessage(id) {
   return null;
 }
 
-function addMessage(msg) {
+export function addMessage(msg) {
   const newMessage = {
     id: uuid(),
     time: Date(),
@@ -41,7 +40,7 @@ function editMessage(updatedMessage) {
   return storedMessage;
 }
 
-module.exports = {
+export default {
   listMessages,
   findMessage,
   addMessage,

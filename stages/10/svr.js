@@ -1,11 +1,10 @@
-'use strict';
-
 // message board app
 // stage 8: Data belongs in a database
-const express = require('express');
-const multer = require('multer');
+import express from 'express';
+import * as multer from 'multer';
+import * as mb from './messageboard.js';
+
 const app = express();
-const mb = require('./messageboard');
 
 const uploader = multer({
   dest: 'upload',

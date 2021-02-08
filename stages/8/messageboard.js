@@ -1,6 +1,5 @@
-'use strict';
-const uuid = require('uuid-random');
-const sqlite = require('sqlite');
+import uuid from 'uuid-random';
+import sqlite from 'sqlite';
 
 async function init() {
   const db = await sqlite.open('./database.sqlite', { verbose: true });
@@ -10,12 +9,12 @@ async function init() {
 
 const dbConn = init();
 
-async function listMessages() {
+export async function listMessages() {
   const db = await dbConn;
   return db.all('SELECT * FROM Messages ORDER BY time DESC LIMIT 10');
 }
 
-async function findMessage(id) {
+export async function findMessage(id) {
   const db = await dbConn;
   return db.get('SELECT * FROM Messages WHERE id = ?', id);
 }
@@ -24,7 +23,7 @@ function currentTime() {
   return new Date().toISOString();
 }
 
-async function addMessage(msg) {
+export async function addMessage(msg) {
   const db = await dbConn;
 
   const id = uuid();
@@ -34,7 +33,7 @@ async function addMessage(msg) {
   return listMessages();
 }
 
-async function editMessage(updatedMessage) {
+export async function editMessage(updatedMessage) {
   const db = await dbConn;
 
   const id = updatedMessage.id;
@@ -48,10 +47,3 @@ async function editMessage(updatedMessage) {
 
   return findMessage(id);
 }
-
-module.exports = {
-  listMessages,
-  findMessage,
-  addMessage,
-  editMessage,
-};

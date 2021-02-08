@@ -1,11 +1,9 @@
-'use strict';
-
 // message board app
 // stage 5: refactor to separate http/web code from core logic
-const express = require('express');
-const app = express();
-const mb = require('./messageboard');
+import express from 'express';
+import * as mb from './messageboard.js';
 
+const app = express();
 app.use(express.static('client'));
 
 function getMessages(req, res) {
