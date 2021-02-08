@@ -1,8 +1,8 @@
 import uuid from 'uuid-random';
-const sqlite = require('sqlite');
-const fs = require('fs');
-const util = require('util');
-const path = require('path');
+import sqlite from 'sqlite';
+import fs from 'fs';
+import util from 'util';
+import path from 'path';
 
 fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 
