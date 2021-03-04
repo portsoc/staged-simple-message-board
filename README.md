@@ -57,7 +57,7 @@ In this repo we see how many APIs emerge _without_ planning.
 * `messageboard.sql` is the SQL script that creates the necessary tables (used in `package.json` by the `setuppg` script)
 * `config.json` specifies where to find a running PostgreSQL and which database to use (edit this if you have trouble connecting to your PostgreSQL)
 
-## Stage 10: Uploading avatar pictures (based on Stage 8) ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-10a))
+## Stage 10: Uploading avatar pictures (based on Stage 8) ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-10))
 
 * `index.html` adds an input field for selecting an avatar picture, and default avatars for the messages present before current messages are loaded from the server
 * `style.css` makes sure the new field fits nicely and that avatar pictures are formatted with the messages
