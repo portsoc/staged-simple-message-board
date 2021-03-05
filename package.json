@@ -16,6 +16,7 @@
     "stage9": "cd stages/9 && nodemon svr",
     "stage10": "cd stages/10 && nodemon svr",
     "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql",
+    "setup": "npm run setuppg",
     "lint": "eslint stages",
     "test": "npm run lint"
   },
@@ -41,6 +42,7 @@
     "multer": "^1.4.2",
     "pg": "^8.5.1",
     "sqlite": "^3.0.3",
+    "sqlite3": "^5.0.2",
     "uuid-random": "^1.3.0"
   },
   "devDependencies": {
