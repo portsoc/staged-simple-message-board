@@ -27,9 +27,12 @@ git checkout -b "$branchprep"
 git add -A ./"$stagesdir"
 git commit -m "empty starting point"
 
-for dir in ./"$branchprep"/*/
+
+stages=`cd "$branchprep"; ls | sort -n`
+
+for stagename in $stages
 do
-  stagename=$(basename ${dir})
+  dir="$branchprep/$stagename"
   rm -rf ./"$stagesdir"
   mkdir ./"$stagesdir"
   mv "$dir"/* ./"$stagesdir"/
