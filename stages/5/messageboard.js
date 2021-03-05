@@ -1,9 +1,21 @@
 import uuid from 'uuid-random';
 
 let messages = [
-  { id: 'xnshfdsafasd', msg: 'these are three default messages', time: 'an hour ago' },
-  { id: 'dskjdshkjhsd', msg: 'delivered from the server', time: 'yesterday' },
-  { id: 'vcxbxcvfggzv', msg: 'using a custom route', time: 'last week' },
+  {
+    id: 'xnshfdsafasd',
+    msg: 'these are three default messages',
+    time: 'an hour ago',
+  },
+  {
+    id: 'dskjdshkjhsd',
+    msg: 'delivered from the server',
+    time: 'yesterday',
+  },
+  {
+    id: 'vcxbxcvfggzv',
+    msg: 'using a custom route',
+    time: 'last week',
+  },
 ];
 
 export function listMessages() {
