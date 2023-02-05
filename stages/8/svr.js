@@ -1,7 +1,8 @@
+import * as mb from './messageboard.js';
+
 // message board app
 // stage 8: Data belongs in a database
 import express from 'express';
-import * as mb from './messageboard.js';
 
 const app = express();
 
@@ -13,11 +14,11 @@ async function getMessages(req, res) {
 
 async function getMessage(req, res) {
   const result = await mb.findMessage(req.params.id);
-  if (!result) {
+  if (result) {
+    res.json(result);
+  } else {
     res.status(404).send('No match for that ID.');
-    return;
   }
-  res.json(result);
 }
 
 async function postMessage(req, res) {

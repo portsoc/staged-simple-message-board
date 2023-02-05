@@ -24,11 +24,13 @@ let messages = [
   },
 ];
 
-app.get('/messages', (req, res) => {
-  res.json(messages);
-});
 
-app.get('/messages/:id', (req, res) => {
+function getMessages(req, res) {
+  res.json(messages);
+}
+
+
+function getMessage(req, res) {
   for (const message of messages) {
     if (message.id === req.params.id) {
       res.json(message);
@@ -36,9 +38,9 @@ app.get('/messages/:id', (req, res) => {
     }
   }
   res.status(404).send('No match for that ID.');
-});
+}
 
-app.post('/messages', express.json(), (req, res) => {
+function postMessages(req, res) {
   const newMessage = {
     id: uuid(),
     msg: req.body.msg,
@@ -46,6 +48,10 @@ app.post('/messages', express.json(), (req, res) => {
   };
   messages = [newMessage, ...messages.slice(0, 9)];
   res.json(messages);
-});
+}
+
+app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
+app.post('/messages', express.json(), postMessages);
 
 app.listen(8080);

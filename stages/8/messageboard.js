@@ -1,8 +1,13 @@
+import { open } from 'sqlite';
+import sqlite3 from 'sqlite3';
 import uuid from 'uuid-random';
-import sqlite from 'sqlite';
 
 async function init() {
-  const db = await sqlite.open('./database.sqlite', { verbose: true });
+  const db = await open({
+    filename: './database.sqlite',
+    driver: sqlite3.Database,
+    verbose: true
+  });
   await db.migrate({ migrationsPath: './migrations-sqlite' });
   return db;
 }

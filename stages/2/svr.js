@@ -11,8 +11,10 @@ const messages = [
   'using a custom route',
 ];
 
-app.get('/messages', (req, res) => {
+function getMessages(req, res) {
   res.json(messages);
-});
+}
+
+app.get('/messages', getMessages);
 
 app.listen(8080);

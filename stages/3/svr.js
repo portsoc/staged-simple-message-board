@@ -11,13 +11,16 @@ let messages = [
   'using a custom route',
 ];
 
-app.get('/messages', (req, res) => {
+function getMessages(req, res) {
   res.json(messages);
-});
+}
 
-app.post('/messages', express.json(), (req, res) => {
+function postMessages(req, res) {
   messages = [req.body.msg, ...messages.slice(0, 9)];
   res.json(messages);
-});
+}
+
+app.get('/messages', getMessages);
+app.post('/messages', express.json(), postMessages);
 
 app.listen(8080);

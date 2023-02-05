@@ -2,4 +2,6 @@ function pageLoaded() {
   console.log('js ready');
 }
 
-window.addEventListener('load', pageLoaded);
+// deprecated in favour of using defer in the script tag
+// window.addEventListener('load', pageLoaded);
+pageLoaded();

@@ -73,4 +73,6 @@ function pageLoaded() {
   loadMessage();
 }
 
-window.addEventListener('load', pageLoaded);
+// deprecated in favour of using defer in the script tag
+// window.addEventListener('load', pageLoaded);
+pageLoaded();
