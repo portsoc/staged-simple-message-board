@@ -5,23 +5,23 @@
   "main": "svr.js",
   "type": "module",
   "scripts": {
-    "stage1": "cd stages/1 && node --watch svr",
-    "stage2": "cd stages/2 && node --watch svr",
-    "stage3": "cd stages/3 && node --watch svr",
-    "stage4": "cd stages/4 && node --watch svr",
-    "stage5": "cd stages/5 && node --watch svr",
-    "stage6": "cd stages/6 && node --watch svr",
-    "stage7": "cd stages/7 && node --watch svr",
-    "stage8": "cd stages/8 && node --watch svr",
-    "stage9": "cd stages/9 && node --watch svr",
-    "stage10": "cd stages/10 && node --watch svr",
+    "stage1": "cd stages/1 && node svr",
+    "stage2": "cd stages/2 && node svr",
+    "stage3": "cd stages/3 && node svr",
+    "stage4": "cd stages/4 && node svr",
+    "stage5": "cd stages/5 && node svr",
+    "stage6": "cd stages/6 && node svr",
+    "stage7": "cd stages/7 && node svr",
+    "stage8": "cd stages/8 && node svr",
+    "stage9": "cd stages/9 && node svr",
+    "stage10": "cd stages/10 && node svr",
     "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql",
     "setup": "npm run setuppg",
     "lint": "eslint stages",
     "test": "npm run lint"
   },
   "repository": {
-    "type": "git",
+    "type": "git",``
     "url": "git+https://github.com/portsoc/staged-simple-message-board.git"
   },
   "keywords": [
