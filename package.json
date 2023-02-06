@@ -21,7 +21,7 @@
     "test": "npm run lint"
   },
   "repository": {
-    "type": "git",``
+    "type": "git",
     "url": "git+https://github.com/portsoc/staged-simple-message-board.git"
   },
   "keywords": [
