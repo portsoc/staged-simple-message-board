@@ -1,13 +1,18 @@
-import uuid from 'uuid-random';
-import sqlite from 'sqlite';
 import fs from 'fs';
-import util from 'util';
+import { open } from 'sqlite';
 import path from 'path';
+import sqlite3 from 'sqlite3';
+import util from 'util';
+import uuid from 'uuid-random';
 
 fs.renameAsync = fs.renameAsync || util.promisify(fs.rename);
 
 async function init() {
-  const db = await sqlite.open('./database.sqlite', { verbose: true });
+  const db = await open({
+    filename: './database.sqlite',
+    driver: sqlite3.Database,
+    verbose: true
+  });
   await db.migrate({ migrationsPath: './migrations-sqlite' });
   return db;
 }
