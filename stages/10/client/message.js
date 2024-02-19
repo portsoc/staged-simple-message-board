@@ -48,6 +48,7 @@ async function sendMessage() {
     el.message.value = '';
     const updatedMessages = await response.json();
     showMessage(updatedMessages, el.messagelist);
+    history.go(-1);
   } else {
     console.log('failed to send message', response);
   }

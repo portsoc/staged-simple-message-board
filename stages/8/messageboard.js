@@ -29,8 +29,8 @@ function currentTime() {
 }
 
 export async function addMessage(msg) {
+  if (msg.trim() === '') return listMessages();
   const db = await dbConn;
-
   const id = uuid();
   const time = currentTime();
   await db.run('INSERT INTO Messages VALUES (?, ?, ?)', [id, msg, time]);

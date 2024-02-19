@@ -44,6 +44,7 @@ function currentTime() {
 }
 
 export async function addMessage(msg, file) {
+  if (msg.trim() === '') return listMessages();
   let newFilename;
   if (file) {
     // we should first check that the file is actually an image

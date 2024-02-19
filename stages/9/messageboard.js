@@ -22,6 +22,7 @@ export async function findMessage(id) {
 }
 
 export async function addMessage(msg) {
+  if (msg.trim() === '') return listMessages();
   const q = 'INSERT INTO Messageboard (msg) VALUES ($1);';
   await sql.query(q, [msg]);
   return listMessages();
