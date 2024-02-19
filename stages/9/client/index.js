@@ -13,9 +13,9 @@ function showMessages(messages, where) {
     li.dataset.id = message.id;
 
     const edit = document.createElement('a');
-    edit.textContent = 'edit me';
+    edit.textContent = 'edit';
     edit.href = `/message#${message.id}`;
-    li.append(' (', edit, ')');
+    li.append(edit);
 
     where.append(li);
 

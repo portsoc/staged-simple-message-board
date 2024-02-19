@@ -4,12 +4,13 @@
 
   --pad: 1rem;
   --rad: calc(var(--pad) / 2);
+  --halfrad: calc(var(--rad) / 2);
   --slow: 0.2s;
   --fast: 0.05s;
 
   --bg: #FFF;
   --bginput: #FEFEFE;
-  --bghi: rgba(0,100,200,0.5);
+  --bghi: rgba(0,100,200,0.1);
   --fg: rgba(0,0,0,1);
   --col1: rgba(0,100,200,1);
 }
@@ -75,6 +76,7 @@ header * {
   grid-area: btn;
   background: var(--col1);
   color: var(--bg);
+  cursor: pointer;
 }
 
 #message {
@@ -106,6 +108,22 @@ header * {
   background: var(--bghi);
   transition: background var(--fast) linear;
 }
+
+#messagelist li a {
+  margin-left: 1em;
+  background: var(--col1);
+  color: var(--bg);
+  padding: var(--halfrad);
+  border-radius: var(--halfrad);
+  text-decoration: none;
+}
+
+
+#messagelist li a:hover {
+  background: var(--bg);
+  color: var(--col1);
+}
+
 
 
 #messagelist > li.update {

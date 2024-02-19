@@ -4,12 +4,13 @@
 
   --pad: 1rem;
   --rad: calc(var(--pad) / 2);
+  --halfrad: calc(var(--rad) / 2);
   --slow: 0.2s;
   --fast: 0.05s;
 
   --bg: #FFF;
   --bginput: #FEFEFE;
-  --bghi: rgba(0,100,200,0.5);
+  --bghi: rgba(0,100,200,0.1);
   --fg: rgba(0,0,0,1);
   --col1: rgba(0,100,200,1);
 }
@@ -37,7 +38,7 @@ body {
   display: grid;
   grid-template-columns: 1fr;
   grid-template-rows: auto auto 1fr auto;
-  grid-template-areas: "title" "input" "messages" "aside";
+  grid-template-areas: "title" "input" "messages" "aside"; 
   width: 100vw;
   height: 100vh;
 }
@@ -53,8 +54,8 @@ h1 {
 header {
   grid-area: input;
   display: grid;
-  grid-template-columns: 1fr auto auto;
-  grid-template-areas: "msg ava btn";
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "msg btn";
   width: 100vw;
 }
 
@@ -75,13 +76,7 @@ header * {
   grid-area: btn;
   background: var(--col1);
   color: var(--bg);
-}
-
-#avatar {
-  grid-area: ava;
-  margin-right: var(--pad);
-  background: var(--bginput);
-  color: var(--fg);
+  cursor: pointer;
 }
 
 #message {
@@ -90,7 +85,6 @@ header * {
   color: var(--fg);
   caret-color: var(--col1);
   margin-right: var(--pad);
-  border: solid thin grey;
 }
 
 #message::placeholder {
@@ -115,6 +109,22 @@ header * {
   transition: background var(--fast) linear;
 }
 
+#messagelist li a {
+  margin-left: 1em;
+  background: var(--col1);
+  color: var(--bg);
+  padding: var(--halfrad);
+  border-radius: var(--halfrad);
+  text-decoration: none;
+}
+
+
+#messagelist li a:hover {
+  background: var(--bg);
+  color: var(--col1);
+}
+
+
 
 #messagelist > li.update {
   animation-duration: var(--speedOfFade);
@@ -123,11 +133,4 @@ header * {
 
 aside {
   grid-area: aside;
-}
-
-img.avatar {
-  max-height: 3em;
-  max-width: 3em;
-  vertical-align: middle;
-  margin-right: 1em;
 }
