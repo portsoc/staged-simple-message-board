@@ -11,7 +11,7 @@ async function init() {
   const db = await open({
     filename: './database.sqlite',
     driver: sqlite3.Database,
-    verbose: true
+    verbose: true,
   });
   await db.migrate({ migrationsPath: './migrations-sqlite' });
   return db;
