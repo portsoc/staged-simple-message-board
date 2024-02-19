@@ -5,6 +5,7 @@
   "main": "svr.js",
   "type": "module",
   "scripts": {
+    "start": "cd stages/1 && node svr",
     "stage1": "cd stages/1 && node svr",
     "stage2": "cd stages/2 && node svr",
     "stage3": "cd stages/3 && node svr",
@@ -48,5 +49,12 @@
   "devDependencies": {
     "eslint": "^8.33.0",
     "eslint-config-portsoc": "^1.0.1"
+  },
+  "eslintConfig": {
+    "extends": "portsoc",
+    "root": true,
+    "env": {
+      "browser": true
+    }
   }
 }
