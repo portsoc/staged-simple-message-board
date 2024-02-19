@@ -32,6 +32,7 @@ async function putMessage(req, res) {
 }
 
 // wrap async function for express.js error handling
+// express 5 will remove the need for this... "soon"
 function asyncWrap(f) {
   return (req, res, next) => {
     Promise.resolve(f(req, res, next))
