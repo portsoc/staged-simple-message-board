@@ -1,7 +1,10 @@
 const el = {};
 
 function showMessage(message) {
+  el.message.focus();
   el.message.value = message.msg;
+  el.message.selectionEnd = el.message.value.length;
+  el.message.selectionStart = el.message.value.length;
 }
 
 function getMessageId() {
