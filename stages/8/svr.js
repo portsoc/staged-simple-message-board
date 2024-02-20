@@ -31,18 +31,9 @@ async function putMessage(req, res) {
   res.json(message);
 }
 
-// wrap async function for express.js error handling
-// express 5 will remove the need for this... "soon"
-function asyncWrap(f) {
-  return (req, res, next) => {
-    Promise.resolve(f(req, res, next))
-      .catch((e) => next(e || new Error()));
-  };
-}
-
-app.get('/messages', asyncWrap(getMessages));
-app.get('/messages/:id', asyncWrap(getMessage));
-app.put('/messages/:id', express.json(), asyncWrap(putMessage));
-app.post('/messages', express.json(), asyncWrap(postMessage));
+app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
+app.put('/messages/:id', express.json(), putMessage);
+app.post('/messages', express.json(), postMessage);
 
 app.listen(8080);

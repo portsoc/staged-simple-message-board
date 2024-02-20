@@ -41,17 +41,9 @@ async function putMessage(req, res) {
   res.json(message);
 }
 
-// wrap async function for express.js error handling
-function asyncWrap(f) {
-  return (req, res, next) => {
-    Promise.resolve(f(req, res, next))
-      .catch((e) => next(e || new Error()));
-  };
-}
-
-app.get('/messages', asyncWrap(getMessages));
-app.get('/messages/:id', asyncWrap(getMessage));
-app.put('/messages/:id', express.json(), asyncWrap(putMessage));
-app.post('/messages', uploader.single('avatar'), express.json(), asyncWrap(postMessage));
+app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
+app.put('/messages/:id', express.json(), putMessage);
+app.post('/messages', uploader.single('avatar'), express.json(), postMessage);
 
 app.listen(8080);
