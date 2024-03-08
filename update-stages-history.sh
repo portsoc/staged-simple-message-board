@@ -43,16 +43,16 @@ do
   git tag -f -a "stage-$stagename" -m "stage $stagename"
 done
 
-# SPECIAL CASE: now redo stage 10 off of stage 8
-  echo "special case stage 10 off of stage 8"
-  git restore -s stage-8 ./"$stagesdir"
-  git add -A ./"$stagesdir"
-  git commit -m "stage 8 again"
+# # SPECIAL CASE: now redo stage 10 off of stage 8
+#   echo "special case stage 10 off of stage 8"
+#   git restore -s stage-8 ./"$stagesdir"
+#   git add -A ./"$stagesdir"
+#   git commit -m "stage 8 again"
 
-  git restore -s stage-10 ./"$stagesdir"
-  git add -A ./"$stagesdir"
-  git commit -m "stage 10 from stage 8"
-  git tag -f -a "stage-10" -m "stage 10 from stage 8"
+#   git restore -s stage-10 ./"$stagesdir"
+#   git add -A ./"$stagesdir"
+#   git commit -m "stage 10 from stage 8"
+#   git tag -f -a "stage-10" -m "stage 10 from stage 8"
 
 git branch -D "$branch"
 git branch -m "$branch"
