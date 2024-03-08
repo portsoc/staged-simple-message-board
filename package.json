@@ -15,8 +15,6 @@
     "stage7": "cd stages/7 && node --watch svr",
     "stage8": "cd stages/8 && node --watch svr",
     "stage9": "cd stages/9 && node --watch svr",
-    "stage10": "cd stages/10 && node --watch svr",
-    "stage11": "cd stages/11 && node --watch svr",
     "setuppg": "createdb messageboard && psql messageboard < stages/9/messageboard.sql",
     "setup": "npm run setuppg",
     "lint": "eslint stages",
