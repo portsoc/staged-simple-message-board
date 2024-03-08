@@ -9,23 +9,20 @@ function removeContentFrom(what) {
 function showMessages(messages, where) {
   for (const message of messages) {
     const li = document.createElement('li');
-    li.textContent = message.msg;
-    li.dataset.id = message.id;
 
-    const edit = document.createElement('a');
-    edit.textContent = 'edit';
-    edit.href = `/message#${message.id}`;
-    li.append(edit);
+    const em = document.createElement('editable-message');
+    em.textContent = message.msg;
+    em.url = `./messages/${message.id}`;
 
-
+    li.append(em);
     where.append(li);
 
-    li.addEventListener('mouseenter', showDetail);
+    em.addEventListener('mouseenter', showDetail);
   }
 }
 
 async function showDetail(e) {
-  const response = await fetch('messages/' + e.target.dataset.id);
+  const response = await fetch(e.target.url);
   if (response.ok) {
     const detail = await response.json();
     const p = document.createElement('p');

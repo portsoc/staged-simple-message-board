@@ -51,38 +51,14 @@ In this repo we see how many APIs emerge _without_ planning.
 * `migrations-sqlite/001-initial.sql` is the SQL script that creates the necessary table (used in `messageboard.js` by the `db.migrate()` call)
 * `database.sqlite` is the database file (it gets created by `messageboard.js` when we first run the server)
 
-## Stage 9: PostgreSQL ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-9))
+## Stage 9: Single Page App ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-9))
 
-* `messageboard.js` uses PostgreSQL instead of SQLite, using the `pg` package
-* `messageboard.sql` is the SQL script that creates the necessary tables (used in `package.json` by the `setuppg` script)
-* `config.json` specifies where to find a running PostgreSQL and which database to use (edit this if you have trouble connecting to your PostgreSQL)
-
-## Stage 10: Uploading avatar pictures (based on Stage 8) ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-10))
-
-* `index.html` adds an input field for selecting an avatar picture, and default avatars for the messages present before current messages are loaded from the server
-* `style.css` makes sure the new field fits nicely and that avatar pictures are formatted with the messages
-* `index.js` puts avatars in the messages (when present, otherwise the default image); and submits messages with the avatar (switching from JSON to `FormData` which supports embedded files)
-* `svr.js` adds file upload functionality with the `multer` package (but keeps the JSON parser as well for backwards compatibility) and gives the incoming file to `mb.addMessage()`; before it's accepted, an uploaded file is in `upload/`
-* `messageboard.js` moves uploaded pictures in `client/images/` and notes their filename in the database, and when retrieving messages, it puts the public path to the picture in every message object
-* `migrations-sqlite/002-file.sql` adds a file column to the Messages table
-* `client/images/` is a folder that stores uploaded pictures, contains a single generic image used when no avatar is available for a message
-* `upload/` is a folder that stores uploaded files before we verify them and move them to `client/images/`
-
-## Exercise
+* `editable-message.js` is added.  This defines a custom HTML element that displays a message as well as a button to edit it.  When the `edit` button is clicked, the message becomes editable and new `Save` and `Cancel` buttons becoem available.  When `Save` is clicked, the element's `url` attribute is used to `PUT` the modified text on the server.
+* `editable-message.html` is added.  This file contains HTML templates and CSS that will be used by the `&lt;editable-message&gt;` component.
+* `svr.js` the message ID to be edited now comes from the URL
+* `messageboard.js` uses the ID passed from `svr.js` as a parameter rather than extracting it from the payload.
+* `index.html` has a new `script` element that includs the new `editable-message` component.  We also change the button text from `Send` to `Add` which is semantically closer to the new `Edit` and `Save` buttons. 
+* `index.js` is modified to generate an `&lt;editable-message&gt;` element for each message, rather than the old anchor element.
+* `message.html` and `message.js` are removed.
 
 
-Imagine a database with tables for lecturers and students, in which every student has a personal tutor who is a lecturer.
-
-1. Who might want to use data from such a database? _(List potential users)_
-2. Consider each type of user that wants to access the data: what functionality will they want from the web app? _(List use cases)_
-3. Design a (read-only) API that provides the data necessary to fulfil the requirements identified above:
-   * Identify the routes
-   * Specify what the server would do in response to a GET request
-   * Describe when the client web app will use the request
-   * NB: You don't have to use any syntax here, you're just dealing with concepts.
-
-When done with the above, extend the exercise:
-
-4. Add a table of modules: every student currently studies several modules, and every module is currently taught by one or more lecturers. Repeat steps 1–3.
-5. Consider that we need to remember the modules students took in previous years; so a final-year student can have 11 modules they studied before, and 5 they are studying currently. Repeat steps 1–3.
-6. Consider who would want to update any of the data. Repeat steps 1–3 but this time design a read-write API: beside the GET routes you defined above, you can define PUT, POST, and DELETE routes.

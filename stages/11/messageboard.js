@@ -38,10 +38,9 @@ export async function addMessage(msg) {
   return listMessages();
 }
 
-export async function editMessage(updatedMessage) {
+export async function editMessage(id, updatedMessage) {
   const db = await dbConn;
 
-  const id = updatedMessage.id;
   const time = currentTime();
   const msg = updatedMessage.msg;
 
