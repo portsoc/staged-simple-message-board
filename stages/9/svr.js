@@ -1,7 +1,7 @@
 import * as mb from './messageboard.js';
 
 // message board app
-// stage 8: Data belongs in a database
+// stage 9: Single page configuration
 import express from 'express';
 
 const app = express();
