@@ -1,10 +1,12 @@
-// message board app
-// stage 5: refactor to separate http/web code from core logic
-import express from 'express';
 import * as mb from './messageboard.js';
 
+// message board app
+// stage 6: add an API route and client page for update messages
+import express from 'express';
+
 const app = express();
-app.use(express.static('client'));
+
+app.use(express.static('client', { extensions: ['html'] }));
 
 function getMessages(req, res) {
   res.json(mb.listMessages());
@@ -24,8 +26,14 @@ function postMessage(req, res) {
   res.json(messages);
 }
 
+function putMessage(req, res) {
+  const message = mb.editMessage(req.body);
+  res.json(message);
+}
+
 app.get('/messages', getMessages);
 app.get('/messages/:id', getMessage);
+app.put('/messages/:id', express.json(), putMessage);
 app.post('/messages', express.json(), postMessage);
 
 app.listen(8080);

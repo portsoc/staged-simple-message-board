@@ -11,6 +11,13 @@ function showMessages(messages, where) {
     const li = document.createElement('li');
     li.textContent = message.msg;
     li.dataset.id = message.id;
+
+    const edit = document.createElement('a');
+    edit.textContent = 'edit';
+    edit.href = `/message#${message.id}`;
+    li.append(edit);
+
+
     where.append(li);
 
     li.addEventListener('mouseenter', showDetail);
