@@ -61,4 +61,15 @@ In this repo we see how many APIs emerge _without_ planning.
 * `index.js` is modified to generate an `&lt;editable-message&gt;` element for each message, rather than the old anchor element.
 * `message.html` and `message.js` are removed.
 
+## Stage 10: Component Architecture ([see the diff](https://github.com/portsoc/staged-simple-message-board/commit/stage-10))
 
+* The entire message board is now a web component.
+* CSS variables are used for consistent theming across components.
+* `shadow-element.js` provides common functions used by all components.
+* `editable-message.js` is refactored and simplified to use the ShadowElement base class.
+* `message-list.js` and `message-list.html` create a reusable component for displaying lists of editable messages
+* `message-board.js` and `message-board.html` create a container component that orchestrates the application and displays details about messages events (listeningfor custom events dispatched by the EditableMessage element).
+* `index.html` is simplified to only include the message-board component.
+* `index.js` is removed as all functionality is now encapsulated in components.
+* `ro.html` is added as a read-only view using HTTP polling with conditional fetching based on Last-Modified headers.
+* Exercise for the reader: modify the components so that if a `readonly` attribute is included, no editing capability is available in the UI - then simplify `ro.html` to use this version of the component rather than the redundant code herein.

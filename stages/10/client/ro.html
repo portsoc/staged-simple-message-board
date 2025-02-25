@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Read-only Message Board</title>
+  <style>
+    :root {
+      --pad: 0.5rem;
+      --rad: 0.5rem;
+      --bg: #fff;
+      --fg: #000;
+      --col1: #0074d9;
+    }
+
+    @media (prefers-color-scheme: dark) {
+      :root {
+        --bg: #111;
+        --fg: #fff;
+      }
+    }
+
+    body {
+      max-width: 40rem;
+      margin: 0 auto;
+      padding: var(--pad);
+      background: var(--bg);
+      color: var(--fg);
+      font-family: system-ui, sans-serif;
+    }
+
+    #messages {
+      display: flex;
+      flex-direction: column;
+      gap: var(--pad);
+    }
+
+    .message {
+      padding: var(--pad);
+      border-radius: var(--rad);
+      background: rgba(128, 128, 128, 0.1);
+    }
+
+    .message:hover {
+      background: rgba(128, 128, 128, 0.2);
+    }
+
+    #detail {
+      position: fixed;
+      bottom: 0;
+      left: 0;
+      right: 0;
+      padding: var(--pad);
+      background: var(--bg);
+      border-top: 1px solid var(--col1);
+      font-size: 0.8em;
+    }
+  </style>
+</head>
+<body>
+  <h1>Messages</h1>
+  <div id="messages"></div>
+  <p id="detail"></p>
+
+  <script>
+    const messageList = document.querySelector('#messages');
+    const detail = document.querySelector('#detail');
+    let lastModified = null;
+
+    async function loadMessages() {
+      try {
+        // First do a HEAD request to check if content changed
+        const checkResponse = await fetch('/messages', { method: 'HEAD' });
+        if (!checkResponse.ok) throw new Error('Failed to check messages');
+        
+        const currentModified = checkResponse.headers.get('Last-Modified');
+        
+        // Always load on first run (lastModified is null)
+        // or if content has changed
+        if (lastModified === null || currentModified !== lastModified) {
+          const response = await fetch('/messages');
+          if (!response.ok) throw new Error('Failed to fetch messages');
+          
+          lastModified = currentModified;
+          const messages = await response.json();
+          
+          // Clear and rebuild message list
+          messageList.innerHTML = '';
+          
+          if (messages.length === 0) {
+            detail.textContent = 'No messages yet';
+            return;
+          }
+          
+          messages.forEach(message => {
+            const div = document.createElement('div');
+            div.className = 'message';
+            div.textContent = message.msg;
+            
+            div.addEventListener('mouseenter', async () => {
+              try {
+                const detailResponse = await fetch(`/messages/${message.id}`);
+                if (!detailResponse.ok) throw new Error('Failed to fetch message details');
+                
+                const data = await detailResponse.json();
+                detail.textContent = `Message received on server at ${data.time}`;
+              } catch (err) {
+                detail.textContent = `Error loading message details: ${err.message}`;
+                console.error('Detail fetch error:', err);
+              }
+            });
+
+            messageList.appendChild(div);
+          });
+        }
+      } catch (err) {
+        detail.textContent = `Error loading messages: ${err.message}`;
+        console.error('Message load error:', err);
+      }
+    }
+
+    // Load messages immediately and poll every 5 seconds
+    loadMessages();
+    const pollInterval = setInterval(loadMessages, 5000);
+
+    // Clean up interval when page is hidden
+    document.addEventListener('visibilitychange', () => {
+      if (document.hidden) {
+        clearInterval(pollInterval);
+      } else {
+        loadMessages();
+        setInterval(loadMessages, 5000);
+      }
+    });
+  </script>
+</body>
+</html>
