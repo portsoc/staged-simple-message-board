@@ -1,57 +1,31 @@
 // message board app
-// stage 4: An API route for every message
+// stage 5: refactor to separate http/web code from core logic
 import express from 'express';
-import uuid from 'uuid-random';
+import * as mb from './messageboard.js';
 
 const app = express();
 app.use(express.static('client'));
 
-let messages = [
-  {
-    id: 'xnshfdsafasd',
-    msg: 'these are three default messages',
-    time: 'an hour ago',
-  },
-  {
-    id: 'dskjdshkjhsd',
-    msg: 'delivered from the server',
-    time: 'yesterday',
-  },
-  {
-    id: 'vcxbxcvfggzv',
-    msg: 'using a custom route',
-    time: 'last week',
-  },
-];
-
-
 function getMessages(req, res) {
-  res.json(messages);
+  res.json(mb.listMessages());
 }
-
 
 function getMessage(req, res) {
-  for (const message of messages) {
-    if (message.id === req.params.id) {
-      res.json(message);
-      return; // short
-    }
+  const result = mb.findMessage(req.params.id);
+  if (result) {
+    res.json(result);
+  } else {
+    res.status(404).send('No match for that ID.');
   }
-  res.status(404).send('No match for that ID.');
 }
 
-function postMessages(req, res) {
-  const newMessage = {
-    id: uuid(),
-    msg: req.body.msg,
-    time: Date(),
-  };
-  messages = [newMessage, ...messages.slice(0, 9)];
+function postMessage(req, res) {
+  const messages = mb.addMessage(req.body.msg);
   res.json(messages);
 }
 
 app.get('/messages', getMessages);
 app.get('/messages/:id', getMessage);
-app.post('/messages', express.json(), postMessages);
+app.post('/messages', express.json(), postMessage);
 
 app.listen(8080);
