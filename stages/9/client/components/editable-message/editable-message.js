@@ -3,7 +3,6 @@
  * A message that can be updated by the user and saved to the server
  */
 export class EditableMessage extends HTMLElement {
-
   /**
    * connectedCallback
    * When the element is added to the
@@ -11,7 +10,7 @@ export class EditableMessage extends HTMLElement {
    */
   async connectedCallback() {
     this.shadow = this.attachShadow({ mode: 'open' });
-    const templateURL = import.meta.url.replace('.js', '.html');
+    const templateURL = import.meta.url.replace('.mjs', '.html');
     this.templatePage = await fetch(templateURL);
     this.shadow.innerHTML = await this.templatePage.text();
     this.showReadonly();
@@ -20,7 +19,7 @@ export class EditableMessage extends HTMLElement {
   /**
    * Empty the shadow DOM by selecting
    * everything that's neither template
-   * nor style and removing all matches. 
+   * nor style and removing all matches.
    */
   clearShadow() {
     const elems = this.shadow.querySelectorAll(':not(template, style)');
