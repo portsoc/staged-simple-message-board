@@ -1,3 +1,5 @@
+const el = {};
+
 /* Remove all contents from a given element */
 function removeContentFrom(what) {
   what.textContent = '';
@@ -20,14 +22,63 @@ async function loadMessages() {
   } else {
     messages = ['failed to load messages :-('];
   }
+  removeContentFrom(el.messagelist);
+  showMessages(messages, el.messagelist);
+}
 
-  const messagelist = document.querySelector('#messagelist');
-  removeContentFrom(messagelist);
-  showMessages(messages, messagelist);
+/* add a message if enter pressed */
+function checkKeys(e) {
+  if (e.key === 'Enter') {
+    sendMessage();
+  }
+}
+
+/** Use fetch to post a JSON message to the server */
+async function sendMessage() {
+  const payload = { msg: el.message.value };
+  console.log('Payload', payload);
+
+  const response = await fetch('messages', {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(payload),
+  });
+
+  if (response.ok) {
+    el.message.value = '';
+    const updatedMessages = await response.json();
+    removeContentFrom(el.messagelist);
+    showMessages(updatedMessages, el.messagelist);
+  } else {
+    console.log('failed to send message', response);
+  }
+}
+
+/**
+ * Page elements used in the program are
+ * setup here for convenience.
+ */
+function prepareHandles() {
+  el.messagelist = document.querySelector('#messagelist');
+  el.message = document.querySelector('#message');
+  el.send = document.querySelector('#send');
+}
+
+/**
+ * Connect listeners for button clicks,
+ * keyboard input, etc.
+ */
+function addEventListeners() {
+  el.send.addEventListener('click', sendMessage);
+  el.message.addEventListener('keyup', checkKeys);
 }
 
 function pageLoaded() {
+  prepareHandles();
+  addEventListeners();
   loadMessages();
 }
 
+// deprecated in favour of using defer in the script tag
+// window.addEventListener('load', pageLoaded);
 pageLoaded();
