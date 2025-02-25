@@ -20,6 +20,7 @@ export function findMessage(id) {
 }
 
 export function addMessage(msg) {
+  if (msg.trim() === '') return messages;
   const newMessage = {
     id: uuid(),
     time: Date(),

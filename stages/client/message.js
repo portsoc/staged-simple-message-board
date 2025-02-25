@@ -1,7 +1,10 @@
 const el = {};
 
 function showMessage(message) {
+  el.message.focus();
   el.message.value = message.msg;
+  el.message.selectionEnd = el.message.value.length;
+  el.message.selectionStart = el.message.value.length;
 }
 
 function getMessageId() {
@@ -44,6 +47,7 @@ async function sendMessage() {
     el.message.value = '';
     const updatedMessages = await response.json();
     showMessage(updatedMessages, el.messagelist);
+    history.go(-1);
   } else {
     console.log('failed to send message', response);
   }

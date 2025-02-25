@@ -1,7 +1,7 @@
 import * as mb from './messageboard.js';
 
 // message board app
-// stage 6: add an API route and client page for update messages
+// stage 7: add css
 import express from 'express';
 
 const app = express();
