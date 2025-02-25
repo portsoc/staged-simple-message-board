@@ -1,19 +1,19 @@
 import * as mb from './messageboard.js';
 
 // message board app
-// stage 7: add css
+// stage 8: Data belongs in a database
 import express from 'express';
 
 const app = express();
 
 app.use(express.static('client', { extensions: ['html'] }));
 
-function getMessages(req, res) {
-  res.json(mb.listMessages());
+async function getMessages(req, res) {
+  res.json(await mb.listMessages());
 }
 
-function getMessage(req, res) {
-  const result = mb.findMessage(req.params.id);
+async function getMessage(req, res) {
+  const result = await mb.findMessage(req.params.id);
   if (result) {
     res.json(result);
   } else {
@@ -21,13 +21,13 @@ function getMessage(req, res) {
   }
 }
 
-function postMessage(req, res) {
-  const messages = mb.addMessage(req.body.msg);
+async function postMessage(req, res) {
+  const messages = await mb.addMessage(req.body.msg);
   res.json(messages);
 }
 
-function putMessage(req, res) {
-  const message = mb.editMessage(req.body);
+async function putMessage(req, res) {
+  const message = await mb.editMessage(req.body);
   res.json(message);
 }
 
