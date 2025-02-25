@@ -1,26 +1,57 @@
 // message board app
-// stage 3: add route for posting new messages
+// stage 4: An API route for every message
 import express from 'express';
+import uuid from 'uuid-random';
 
 const app = express();
 app.use(express.static('client'));
 
 let messages = [
-  'these are three default messages',
-  'delivered from the server',
-  'using a custom route',
+  {
+    id: 'xnshfdsafasd',
+    msg: 'these are three default messages',
+    time: 'an hour ago',
+  },
+  {
+    id: 'dskjdshkjhsd',
+    msg: 'delivered from the server',
+    time: 'yesterday',
+  },
+  {
+    id: 'vcxbxcvfggzv',
+    msg: 'using a custom route',
+    time: 'last week',
+  },
 ];
+
 
 function getMessages(req, res) {
   res.json(messages);
 }
 
+
+function getMessage(req, res) {
+  for (const message of messages) {
+    if (message.id === req.params.id) {
+      res.json(message);
+      return; // short
+    }
+  }
+  res.status(404).send('No match for that ID.');
+}
+
 function postMessages(req, res) {
-  messages = [req.body.msg, ...messages.slice(0, 9)];
+  const newMessage = {
+    id: uuid(),
+    msg: req.body.msg,
+    time: Date(),
+  };
+  messages = [newMessage, ...messages.slice(0, 9)];
   res.json(messages);
 }
 
 app.get('/messages', getMessages);
+app.get('/messages/:id', getMessage);
 app.post('/messages', express.json(), postMessages);
 
 app.listen(8080);
