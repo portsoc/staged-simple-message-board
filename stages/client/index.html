@@ -1,22 +1,11 @@
 <!doctype html>
 <meta charset=utf-8>
 <link rel="stylesheet" href="style.css">
-<script defer src="index.js"></script>
-<script type=module src="components/editable-message/editable-message.js"></script>
+<script type=module src="components/message-board/message-board.mjs"></script>
+<script type=module src="components/message-list/message-list.mjs"></script>
+<script type=module src="components/editable-message/editable-message.mjs"></script>
 <title>Message Board</title>
 
 <h1>Message Board</h1>
 
-<header>
-  <input id=message type=text autofocus autocomplete=off placeholder='Add a message here…'>
-  <input id=send type=submit value=Add>
-</header>
-
-<ul id=messagelist>
-  <li>One day this will be a message board.</li>
-  <li>Until then we can dream.</li>
-</ul>
-
-<aside id=detail>
-  <p>message details will show here…</p>
-</aside>
+<message-board url="./messages/"></message-board>

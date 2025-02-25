@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Message List</title>
+
+<style>
+
+header {
+  grid-area: input;
+  display: grid;
+  grid-template-columns: 1fr auto;
+  grid-template-areas: "msg btn";
+  width: auto;
+}
+
+a,
+a:visited {
+  color: var(--col1);
+}
+
+header * {
+  font-size: 100%;
+  outline-color: var(--col1);
+  border: none;
+  border-radius: var(--rad);
+  padding: var(--pad);
+}
+
+#send {
+  grid-area: btn;
+  background: var(--col1);
+  color: var(--bg);
+  cursor: pointer;
+}
+
+#message {
+  grid-area: msg;
+  background: var(--bginput);
+  color: var(--fg);
+  caret-color: var(--col1);
+  margin-right: var(--pad);
+}
+
+#message::placeholder {
+  color: var(--col1);
+}
+
+#messagelist {
+  grid-area: messages;
+  display: flex;
+  flex-direction: column;
+}
+
+#messagelist > li {
+  padding: var(--pad);
+  list-style: none;
+  overflow: hidden;
+  background: var(--bg);
+}
+
+#messagelist > li:hover {
+  background: var(--bghi);
+  transition: background var(--fast) linear;
+}
+
+#messagelist li a {
+  margin-left: var(--pad);
+  background: var(--col1);
+  color: var(--bg);
+  padding: var(--halfrad);
+  border-radius: var(--halfrad);
+  text-decoration: none;
+}
+
+
+#messagelist li a:hover {
+  background: var(--bg);
+  color: var(--col1);
+}
+
+
+#messagelist > li.update {
+  animation-duration: var(--speedOfFade);
+  animation-name: slidein;
+}
+
+aside {
+  grid-area: aside;
+}
+</style>
+
+<header>
+  <input id=message type=text autofocus autocomplete=off placeholder='Add a message here…'>
+  <input id=send type=submit value=Add>
+</header>
+
+<message-list id="ml"></message-list>
+
+<aside>
+  <p id="detail">message details will show here</p>
+</aside>

@@ -4,9 +4,6 @@
 <title>Editable Message</title>
 
 <style>
-:host {
-  --col1: rgba(0,100,200,1);
-}
 
 div {
     display: flex;
@@ -25,9 +22,9 @@ button {
     background: var(--col1);
     color: white;
     border: none;
-    border-radius: 0.5em;
-    margin-left: 1ex;
-    padding: 0.5em 1em;
+    border-radius: var(--rad);
+    margin-left: var(--rad);
+    padding: var(--rad) var(--pad);
     cursor: pointer;
     flex-grow: 0;
     font-size: 100%;
