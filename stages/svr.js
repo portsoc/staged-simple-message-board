@@ -27,7 +27,7 @@ async function postMessage(req, res) {
 }
 
 async function putMessage(req, res) {
-  const message = await mb.editMessage(req.body);
+  const message = await mb.editMessage(req.params.id, req.body);
   res.json(message);
 }
 

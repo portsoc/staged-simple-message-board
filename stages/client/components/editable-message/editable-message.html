@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<meta charset="UTF-8">
+<title>Editable Message</title>
+
+<style>
+:host {
+  --col1: rgba(0,100,200,1);
+}
+
+div {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 1;
+    justify-content: space-between;
+    align-items: center;
+}
+
+input,
+#message {
+    flex-grow: 1;
+}
+
+button {
+    background: var(--col1);
+    color: white;
+    border: none;
+    border-radius: 0.5em;
+    margin-left: 1ex;
+    padding: 0.5em 1em;
+    cursor: pointer;
+    flex-grow: 0;
+    font-size: 100%;
+}
+</style>
+
+<template id="read-template">
+  <div class="editable-message">
+    <span id="message">this is a message</span>
+    <button id="edit">Edit</button>
+  </div>
+</template>
+
+<template id="edit-template">
+  <div class="editable-message-edit">
+    <input id="message" value="editthistext">
+    <span>
+      <button id="save">Save</button>
+      <button id="cancel">Cancel</button>
+    </span>
+  </div>
+</template>
