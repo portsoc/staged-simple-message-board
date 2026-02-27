@@ -5,11 +5,11 @@
   "main": "svr.js",
   "type": "module",
   "scripts": {
-    "start": "cd stages/1 && node svr",
-    "stage1": "cd stages/1 && node --watch svr",
+    "start": "cd stages/1 && node --watch svr",
     "stage2": "cd stages/2 && node --watch svr",
     "stage3": "cd stages/3 && node --watch svr",
     "stage4": "cd stages/4 && node --watch svr",
+    "stage1": "cd stages/1 && node --watch svr",
     "stage5": "cd stages/5 && node --watch svr",
     "stage6": "cd stages/6 && node --watch svr",
     "stage7": "cd stages/7 && node --watch svr",
@@ -40,9 +40,8 @@
   },
   "homepage": "https://github.com/portsoc/staged-simple-message-board#readme",
   "dependencies": {
+    "better-sqlite3": "^12.6.2",
     "express": "^5.0.1",
-    "sqlite": "^5.1.1",
-    "sqlite3": "^5.1.7",
     "uuid-random": "^1.3.2"
   },
   "devDependencies": {

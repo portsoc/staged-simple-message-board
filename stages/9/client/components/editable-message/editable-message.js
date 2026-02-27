@@ -10,7 +10,7 @@ export class EditableMessage extends HTMLElement {
    */
   async connectedCallback() {
     this.shadow = this.attachShadow({ mode: 'open' });
-    const templateURL = import.meta.url.replace('.mjs', '.html');
+    const templateURL = import.meta.url.replace(/\.m?js$/, '.html');
     this.templatePage = await fetch(templateURL);
     this.shadow.innerHTML = await this.templatePage.text();
     this.showReadonly();
