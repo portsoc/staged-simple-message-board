@@ -1,15 +1,8 @@
-import { open } from 'sqlite';
-import Database from 'better-sqlite3';
+import { initDb } from '../../db-utils.js';
 import uuid from 'uuid-random';
 
-async function init() {
-  const db = await open({
-    filename: './database.sqlite',
-    driver: Database,
-    verbose: true,
-  });
-  await db.migrate({ migrationsPath: './migrations-sqlite' });
-  return db;
+function init() {
+  return initDb('./database.sqlite', './migrations-sqlite');
 }
 
 const dbConn = init();
